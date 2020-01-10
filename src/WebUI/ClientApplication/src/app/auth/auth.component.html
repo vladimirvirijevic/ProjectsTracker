@@ -1,17 +1,34 @@
-<div class="auth">
-    <form [formGroup]="authForm" (ngSubmit)="submitForm()" class="auth-form">
-        <div class="auth-form__heading">
-            <h1>Project Tracker</h1>
-            <h4>{{ title }}</h4>
+<div class="auth-wrapper">
+    <div class="auth">
+        <form [formGroup]="authForm" (ngSubmit)="submitForm()" class="auth-form">
+            <div class="auth-form__heading">
+                <h1>Project Tracker</h1>
+                <h4>{{ title }}</h4>
+            </div>
+            
+            <div class="auth-form__field">
+                <input class="auth-form__input" type="text" placeholder="Username">
+                <svg class="auth-form__icon">
+                    <use xlink:href="../assets/sprite.svg#icon-user"></use>
+                </svg>
+            </div>
+            <div class="auth-form__field">
+                <input class="auth-form__input" type="email" placeholder="Email" *ngIf="authType == 'register'">
+                <svg class="auth-form__icon">
+                    <use xlink:href="../assets/sprite.svg#icon-envelope"></use>
+                </svg>
+            </div>
+            <div class="auth-form__field">
+                <input class="auth-form__input" type="password" placeholder="Password">
+                <svg class="auth-form__icon">
+                    <use xlink:href="../assets/sprite.svg#icon-key"></use>
+                </svg>
+            </div>            
+            <button type="submit" class="auth-form__button">Sign in</button>
+        </form>
+    
+        <div class="auth-bottom-text">
+            <p>{{ bottomTextDescription }} <a routerLink='/{{bottomTextPath}}'>{{ bottomTextLink }}</a></p>
         </div>
-
-        <input class="auth-form__input" type="text" placeholder="Username">
-        <input class="auth-form__input" type="email" placeholder="Email" *ngIf="authType == 'register'">
-        <input class="auth-form__input" type="password" placeholder="Password">
-        <button type="submit" class="auth-form__button">Sign in</button>
-    </form>
-
-    <div class="auth-bottom-text">
-        <p>{{ bottomTextDescription }} <a routerLink='/{{bottomTextPath}}'>{{ bottomTextLink }}</a></p>
     </div>
 </div>

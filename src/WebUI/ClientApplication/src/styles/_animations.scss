@@ -1,0 +1,8 @@
+@keyframes svg-fill {
+    0%,71% {
+        fill:var(--color-grey-dark-1)
+    }
+
+    72% {fill:var(--color-green);}
+    75%,100% {fill: var(--color-grey-dark-1);}
+}

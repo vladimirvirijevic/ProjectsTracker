@@ -16,11 +16,26 @@
         }
     }
 
+    &__field {
+        display: flex;
+        position: relative;
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        position: absolute;
+        top: 2.7rem;
+        left: 1.5rem;
+        fill: var(--color-grey-dark-1);
+    }
+
     &__input {
-        border-radius: 5px;
+        width: 100%;
+        border-radius: .5rem;
         font-weight: 700;
         font-size: 1.6rem;
-        padding: 2rem 3rem;
+        padding: 2rem 3rem 2rem 5rem;
         margin: 1rem 0;
         background-color: var(--color-grey-dark-3);
         color: var(--color-grey-dark-1);
@@ -30,10 +45,19 @@
             font-weight: 700;
             color: var(--color-grey-dark-2);
         }
+
+        &:focus {
+            outline: none;
+        }
+
+        &:focus + svg {
+            outline: none;
+            fill: var(--color-green);
+        }
     }
 
     &__button {
-        border-radius: 5px;
+        border-radius: .5rem;
         font-size: 1.6rem;
         padding: 2rem;
         text-transform: uppercase;
@@ -46,6 +70,7 @@
 
         &:hover {
             cursor: pointer;
+            background: var(--color-grey-dark-2);
         }
     }
 }
