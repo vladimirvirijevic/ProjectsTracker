@@ -1,0 +1,38 @@
+:root {
+    --color-green: #5CDB95;
+    --color-green-light: #8EE4AF;
+    --color-green-dark: #379683;
+    --color-blue-dark: #05386B;  
+    --color-light: #EDF5E1;
+    
+    --color-grey: #ccc;
+
+    --color-grey-dark-1: rgb(107, 107, 107);
+    --color-grey-dark-2: rgb(175, 175, 175);
+    --color-grey-dark-3: rgb(236, 236, 236);
+    --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, .3);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+ 
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; 
+}
+
+body {
+    font-family: 'Muli', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-grey-dark-1);
+}

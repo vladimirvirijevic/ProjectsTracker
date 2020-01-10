@@ -1,0 +1,17 @@
+.wrapper {
+}
+
+.auth {
+    font-size: 1.4rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50rem;
+    height: 60rem;
+    padding: 30px 60px 20px 60px;
+    text-align: center;
+    margin-top: 15rem;
+    box-shadow: var(--shadow-dark);
+    border-radius: 10px;
+}

@@ -1,0 +1,51 @@
+//////////////////////////////////////
+///// AUTH-FORM
+.auth-form {
+    display: flex;
+    flex-direction: column;
+
+    &__heading {
+        h1 {
+            font-size: 3rem;
+            margin: 2rem 0;
+            color: var(--color-grey-dark-1);
+        }
+
+        h4 {
+            font-size: 2rem;
+        }
+    }
+
+    &__input {
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 1.6rem;
+        padding: 2rem 3rem;
+        margin: 1rem 0;
+        background-color: var(--color-grey-dark-3);
+        color: var(--color-grey-dark-1);
+        border: none;
+
+        &::placeholder {
+            font-weight: 700;
+            color: var(--color-grey-dark-2);
+        }
+    }
+
+    &__button {
+        border-radius: 5px;
+        font-size: 1.6rem;
+        padding: 2rem;
+        text-transform: uppercase;
+        background-color: var(--color-green);
+        border: none;
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: .13rem;
+        margin-top: 2rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
