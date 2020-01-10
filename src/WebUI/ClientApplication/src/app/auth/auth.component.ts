@@ -14,6 +14,7 @@ export class AuthComponent implements OnInit {
   bottomTextDescription = '';
   bottomTextLink = '';
   bottomTextPath = '';
+  submitted = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,8 +22,8 @@ export class AuthComponent implements OnInit {
     private fb: FormBuilder
   ) { 
     this.authForm = this.fb.group({
-      'username': ['', Validators.required],
-      'password': ['', Validators.required]
+      'username': ['', [Validators.required, Validators.minLength(3)]],
+      'password': ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -47,10 +48,20 @@ export class AuthComponent implements OnInit {
 
     if (this.authType === 'register') {
       this.authForm.addControl('email', new FormControl());
+      this.authForm.controls['email'].setValidators([Validators.required, Validators.email]);
     }
   }
 
+  get username() { return this.authForm.get('username'); }
+  get password() { return this.authForm.get('password'); }
+  get email() { return this.authForm.get('email'); }
+
   submitForm() {
+    this.submitted = true;
+
+    if (this.authForm.invalid) {
+      return;
+    }
 
   }
 }

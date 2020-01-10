@@ -2,33 +2,87 @@
     <div class="auth">
         <form [formGroup]="authForm" (ngSubmit)="submitForm()" class="auth-form">
             <div class="auth-form__heading">
+                <svg class="auth-form__heading__icon">
+                    <use xlink:href="../assets/sprite.svg#icon-clock"></use>
+                </svg>
                 <h1>Project Tracker</h1>
                 <h4>{{ title }}</h4>
             </div>
             
             <div class="auth-form__field">
-                <input class="auth-form__input" type="text" placeholder="Username">
+                <input 
+                    formControlName="username"
+                    required
+                    minlength="3"
+                    class="auth-form__input" 
+                    [ngClass]="{ 'is-invalid': submitted && username.errors }" 
+                    type="text" 
+                    placeholder="Username"
+                    >
                 <svg class="auth-form__icon">
                     <use xlink:href="../assets/sprite.svg#icon-user"></use>
                 </svg>
             </div>
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="invalid">
+                <div *ngIf="username.errors.required">
+                    Username is required.
+                </div>
+                <div *ngIf="username.errors.minlength">
+                   Username must be at least 3 characters long.
+                </div>
+            </div>
+
             <div class="auth-form__field">
-                <input class="auth-form__input" type="email" placeholder="Email" *ngIf="authType == 'register'">
+                <input 
+                    *ngIf="authType == 'register'"
+                    formControlName="email"
+                    required
+                    email
+                    class="auth-form__input" 
+                    [ngClass]="{ 'is-invalid': submitted && email.errors }"
+                    type="email" 
+                    placeholder="Email" 
+                    >
                 <svg class="auth-form__icon">
                     <use xlink:href="../assets/sprite.svg#icon-envelope"></use>
                 </svg>
             </div>
+            <div *ngIf="authType == 'register' && email.invalid && (email.dirty || email.touched)" class="invalid">
+                <div *ngIf="email.errors.required">
+                    Email is required.
+                </div>
+                <div *ngIf="email.errors.email">
+                    Imvalid email address.
+                </div>
+            </div>
+
             <div class="auth-form__field">
-                <input class="auth-form__input" type="password" placeholder="Password">
+                <input 
+                    formControlName="password"
+                    required
+                    minlength="6"
+                    class="auth-form__input" 
+                    [ngClass]="{ 'is-invalid': submitted && password.errors }"
+                    type="password" 
+                    placeholder="Password">
                 <svg class="auth-form__icon">
                     <use xlink:href="../assets/sprite.svg#icon-key"></use>
                 </svg>
-            </div>            
+            </div> 
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid">
+                <div *ngIf="password.errors.required">
+                    Password is required.
+                </div>
+                <div *ngIf="password.errors.minlength">
+                    Password must be at least 6 characters long.
+                </div>
+            </div>
+
             <button type="submit" class="auth-form__button">Sign in</button>
         </form>
     
         <div class="auth-bottom-text">
-            <p>{{ bottomTextDescription }} <a routerLink='/{{bottomTextPath}}'>{{ bottomTextLink }}</a></p>
+            <p>{{ bottomTextDescription }} <a class="auth-bottom-text__link" routerLink='/{{bottomTextPath}}'>{{ bottomTextLink }}</a></p>
         </div>
     </div>
 </div>
