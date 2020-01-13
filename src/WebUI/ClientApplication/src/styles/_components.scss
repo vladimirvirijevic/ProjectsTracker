@@ -8,6 +8,11 @@
         position: relative;
 
         &__icon {
+            @media only screen and (max-width: 600px) {
+                top: 2.2rem;
+                left: 2.5rem;
+            }
+
             position: absolute;
             height: 4.5rem;
             width: 4.5rem;
@@ -108,4 +113,67 @@
 
 .is-invalid {
     border: .1rem solid red;
+}
+
+//////////////////////////////////
+////// NAVBAR-MENU
+.navbar-menu {
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    
+
+    &__item {
+        list-style: none;
+    }
+
+    &__link {
+        display: block;
+        text-decoration: none;
+        color: #fff;
+        padding: 2rem 5.5rem;
+        font-size: 1.6rem;
+        font-weight: 600;
+        position: relative;
+
+        &:hover {
+            background-color: var(--color-blue-main-darker);
+        }
+    }
+
+    &__active {
+        background-color: var(--color-blue-main-darker);
+    }
+
+    &__icon {
+        position: absolute;
+        height: 2rem;
+        width: 2rem;
+        fill: #fff;
+        top: 2.3rem;
+        left: 2rem;
+    }
+}
+//////////////////////////////////
+////// NAVBAR-BRAND
+
+.navbar-brand {
+    padding: 1.5rem 2rem;
+    text-align: center;
+    background-color: var(--color-blue-main-darker);
+    position: relative;
+
+    &__title {
+        font-size: 2rem;
+        color: #fff;
+    }
+
+    &__icon {
+        position: absolute;
+        top: 1.8rem;
+        left: 2rem;
+        fill: #fff;
+        height: 2.5rem;
+        width: 2.5rem;
+    }
 }

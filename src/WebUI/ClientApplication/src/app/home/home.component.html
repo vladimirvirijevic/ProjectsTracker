@@ -1,0 +1,47 @@
+<div class="home-wrapper">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <svg class="navbar-brand__icon">
+                <use xlink:href="../assets/sprite.svg#icon-clock"></use>
+            </svg>
+            <h1 class="navbar-brand__title">Project Tracker</h1>
+        </div>
+        <ul class="navbar-menu">
+            <li class="navbar-menu__item">
+                <a [routerLink]="['/app/timer']" routerLinkActive="navbar-menu__active" class="navbar-menu__link">
+                    <svg class="navbar-menu__icon">
+                        <use xlink:href="../assets/sprite.svg#icon-home"></use>
+                    </svg>
+                    Timer
+                </a>
+            </li>
+            <li class="navbar-menu__item">
+                <a [routerLink]="['/app/projects']" routerLinkActive="navbar-menu__active" class="navbar-menu__link">
+                    <svg class="navbar-menu__icon">
+                        <use xlink:href="../assets/sprite.svg#icon-chat"></use>
+                    </svg>
+                    Projects
+                </a>
+            </li>
+            <li class="navbar-menu__item">
+                <a href="#" class="navbar-menu__link">
+                    <svg class="navbar-menu__icon">
+                        <use xlink:href="../assets/sprite.svg#icon-map"></use>
+                    </svg>
+                    Stastiticts
+                </a>
+            </li>
+            <li class="navbar-menu__item">
+                <a href="#" class="navbar-menu__link">
+                    <svg class="navbar-menu__icon">
+                        <use xlink:href="../assets/sprite.svg#icon-location-pin"></use>
+                    </svg>
+                    Settings
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <router-outlet></router-outlet>
+    </main>
+</div>
