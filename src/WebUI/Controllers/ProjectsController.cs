@@ -2,6 +2,7 @@
 using Application.Projects.Commands.DeleteProject;
 using Application.Projects.Commands.UpdateProject;
 using Application.Projects.Queries.GetAllProjects;
+using Application.Projects.Queries.GetProject;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
@@ -35,6 +36,19 @@ namespace WebUI.Controllers
             var currentUser = _userService.GetById(int.Parse(userId));
 
             var result = await _mediator.Send(new GetAllProjectsQuery { Username = currentUser.Username });
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> Get([FromRoute] int id)
+        {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+            var currentUser = _userService.GetById(int.Parse(userId));
+
+            var result = await _mediator.Send(new GetProjectQuery { Username = currentUser.Username, Id = id });
 
             return Ok(result);
         }

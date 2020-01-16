@@ -340,3 +340,23 @@
         }
     }
 }
+
+///////////////////////////
+/////// PROJECT DETAIL
+.project-details {
+    font-size: 1.7rem;
+
+    &__description {
+        font-weight: bold;
+        font-size: 2.2rem
+    }
+
+    &__text {
+        margin-bottom: 3rem;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: rgb(41, 41, 41);
+    }
+}

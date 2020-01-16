@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { ProjectsCreateComponent } from './projects/projects-create/projects-create.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
+import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProjectsListComponent } from './projects/projects-list/projects-list.co
     ProjectsComponent,
     TimerComponent,
     ProjectsCreateComponent,
-    ProjectsListComponent
+    ProjectsListComponent,
+    ProjectDetailComponent
   ],
   imports: [
     BrowserModule,

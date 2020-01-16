@@ -24,6 +24,10 @@ export class ProjectService {
     );
   }
 
+  get(id: number): Observable<Project> {
+    return this.http.get<Project>(`${environment.api_url}/projects/get/${id}`);
+  }
+
   create(project: object) {
     return this.http.post<any>(`${environment.api_url}/projects/post`, project);
   }

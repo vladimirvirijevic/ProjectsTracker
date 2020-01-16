@@ -11,7 +11,7 @@
         <p>Client</p>
     </div>
 
-    <div *ngFor="let project of projects" class="project-item">
+    <div routerLink="{{project.id}}" *ngFor="let project of projects" class="project-item">
         <p>{{project.name}}</p>
         <p>{{project.description}}</p>
         <p>32</p>

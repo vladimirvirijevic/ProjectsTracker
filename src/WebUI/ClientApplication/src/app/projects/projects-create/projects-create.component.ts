@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Project } from 'src/app/_models';
 import { ProjectService } from 'src/app/_services/project.service';
 import { AuthenticationService } from 'src/app/_services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects-create',
@@ -15,7 +16,8 @@ export class ProjectsCreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private projectService: ProjectService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private rotuter: Router
   ) {
     this.createForm = this.fb.group({
       'name': ['', Validators.required],
@@ -41,6 +43,13 @@ export class ProjectsCreateComponent implements OnInit {
     };
 
     this.projectService.create(newProject)
-      .subscribe();
+      .subscribe(
+        success => {
+          this.rotuter.navigateByUrl('/app/projects');
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 }
