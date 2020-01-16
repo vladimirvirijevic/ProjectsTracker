@@ -12,11 +12,6 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  headers = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
-  httpOptions = {
-    headers: this.headers
-  };
-
   private handleError(error: any) {
     console.log(error);
     return throwError(error);
@@ -27,5 +22,9 @@ export class ProjectService {
       tap(data => console.log(data)),
       catchError(this.handleError)
     );
+  }
+
+  create(project: object) {
+    return this.http.post<any>(`${environment.api_url}/projects/post`, project);
   }
 }

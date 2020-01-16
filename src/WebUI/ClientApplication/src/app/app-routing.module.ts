@@ -5,13 +5,18 @@ import { HomeComponent } from './home/home.component';
 import { TimerComponent } from './timer/timer.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AuthGuard } from './_helpers';
+import { ProjectsCreateComponent } from './projects/projects-create/projects-create.component';
+import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: AuthComponent },
   { path: 'register', component: AuthComponent },
   { path: 'app', canActivate: [AuthGuard], component: HomeComponent, children: [
-    { path: 'projects', component: ProjectsComponent },
+    { path: 'projects', component: ProjectsComponent, children: [
+      { path: '', component: ProjectsListComponent },
+      { path: 'create', component: ProjectsCreateComponent }
+    ] },
     { path: 'timer', component: TimerComponent },
   ] }
 ];

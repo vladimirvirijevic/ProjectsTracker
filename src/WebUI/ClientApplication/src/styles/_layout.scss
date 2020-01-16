@@ -68,3 +68,42 @@
     align-items: center;
     justify-content: space-between;
 }
+
+//////////////////////
+///// PROJECTS LAYOUT
+
+.project-list {
+    margin-top: 3rem;
+    box-shadow: var(--shadow-dark);
+    border-radius: 1rem;
+}
+
+.project-item {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 2rem;
+    font-size: 1.6rem;
+    border-bottom: 1px solid rgb(202, 202, 202);
+}
+
+.project-list-heading {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 2rem;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+
+////////////////////////////////
+///// SHARED LAYOUT
+.section-header {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+}

@@ -274,3 +274,69 @@
         }
     }
 }
+
+/////////////////////////
+//////// PROJECT-HEADER
+.project-header {
+    font-size: 1.6rem;
+    font-weight: 400;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__create-button {
+        margin-left: 3.5rem;
+        padding: 2rem 3rem;
+        background-color: var(--color-green);
+        color: #fff;
+        font-size: 1.6;
+        border-radius: .5rem;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+            background-color: var(--color-green-dark);
+        }
+    }
+}
+
+//////////////////
+////// PROJECT-ITEM
+.project-item {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+/////////////////////////
+//////// CREATE-FORM
+.create-form {
+    width: 100%;
+    font-size: 1.6rem;
+
+    &__input {
+        width: 100%;
+        font-size: 1.7rem;
+        padding: 1.5rem 2rem;
+    }
+
+    &__field {
+        margin: 1rem 0 3rem 0;
+    }
+
+    &__btn {
+        padding: 2rem 10rem;
+        background-color: var(--color-green);
+        color: #fff;
+        font-size: 1.6;
+        border-radius: .5rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+
+        &:hover {
+            cursor: pointer;
+            background-color: var(--color-green-dark);
+        }
+    }
+}

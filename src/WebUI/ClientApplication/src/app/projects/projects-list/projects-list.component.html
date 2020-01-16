@@ -1,0 +1,20 @@
+<div class="project-header">
+    <h1>My Projects</h1>
+    <a routerLink="create" class="project-header__create-button">CREATE NEW</a>
+</div>
+
+<div class="project-list">
+    <div class="project-list-heading">
+        <p>Name</p>
+        <p>Description</p>
+        <p>Hours</p>
+        <p>Client</p>
+    </div>
+
+    <div *ngFor="let project of projects" class="project-item">
+        <p>{{project.name}}</p>
+        <p>{{project.description}}</p>
+        <p>32</p>
+        <p>TestClient1</p>
+    </div>
+</div>

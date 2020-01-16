@@ -11,6 +11,8 @@ import { ProjectsComponent } from './projects/projects.component';
 import { TimerComponent } from './timer/timer.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { ProjectsCreateComponent } from './projects/projects-create/projects-create.component';
+import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +20,16 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
     AuthComponent,
     HomeComponent,
     ProjectsComponent,
-    TimerComponent
+    TimerComponent,
+    ProjectsCreateComponent,
+    ProjectsListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
