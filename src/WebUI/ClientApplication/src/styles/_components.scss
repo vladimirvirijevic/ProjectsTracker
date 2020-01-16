@@ -95,6 +95,8 @@
 /////////////////////////////////
 //////// AUTH BOTTOM TEXT
 .auth-bottom-text {
+    margin: 3rem 0 1rem 0;
+
     &__link {
         text-decoration: none;
         color: var(--color-green-dark);
@@ -175,5 +177,100 @@
         fill: #fff;
         height: 2.5rem;
         width: 2.5rem;
+    }
+}
+
+//////////////////////////
+///// TOP-INFO-USER
+.top-info-user {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 1.6rem;
+    padding: 1.5rem 4rem;
+    background-color: #fff;
+    align-items: center;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &__image {
+        height: 3rem;
+        margin-left: 1.5rem;
+        border-radius: 50%;
+    }
+}
+
+///////////////////////////////////
+////// TIMER-PROJECT
+.timer-project {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &__icon {
+        height: 2.2rem;
+        width: 2.2rem;
+        position: absolute;
+        top: .1rem;
+        left: -3.5rem;
+        fill: var(--color-grey-dark-1);
+    }
+
+    &__text {
+        margin-right: 1.5rem;
+    }
+
+    &__select {
+        padding: .5rem;
+    }
+}
+
+///////////////////////
+//// timer-time-info
+
+.timer-time-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &__icon {
+        height: 2.2rem;
+        width: 2.2rem;
+        position: absolute;
+        top: .7rem;
+        left: -3rem;
+        fill: var(--color-grey-dark-1);
+    }
+
+    &__icon-trash {
+        height: 2.2rem;
+        width: 2.2rem;
+        position: absolute;
+        top: .7rem;
+        right: -4rem;
+        fill: rgb(231, 77, 77);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__time {
+        font-size: 2rem;
+    }
+
+    &__btn {
+        margin-left: 2.5rem;
+        background: var(--color-green);
+        color: #fff;
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
+        border: none;
+        font-weight: 600;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

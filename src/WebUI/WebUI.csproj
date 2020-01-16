@@ -6,9 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ClientApplication\**" />
     <Compile Remove="ClientApp\**" />
+    <Content Remove="ClientApplication\**" />
     <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="ClientApplication\**" />
     <EmbeddedResource Remove="ClientApp\**" />
+    <None Remove="ClientApplication\**" />
     <None Remove="ClientApp\**" />
   </ItemGroup>
 

@@ -3,6 +3,7 @@ using Application.Projects.Commands.DeleteProject;
 using Application.Projects.Commands.UpdateProject;
 using Application.Projects.Queries.GetAllProjects;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -11,7 +12,8 @@ using WebUI.Services;
 
 namespace WebUI.Controllers
 {
-    [EnableCors("MyPolicy")]
+    [Authorize]
+    //[EnableCors("MyPolicy")]
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class ProjectsController : ControllerBase

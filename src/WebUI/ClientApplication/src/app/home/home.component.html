@@ -42,6 +42,14 @@
         </ul>
     </nav>
     <main class="main-content">
-        <router-outlet></router-outlet>
+        <div class="top-info">
+            <div class="top-info-user">
+                <img class="top-info-user__image" src="../../assets/img/profile.png" alt="profile picture">   
+                <p class="top-info-user__username">Vladimir</p>
+            </div>
+        </div>
+        <div class="section-wrapper">
+            <router-outlet></router-outlet>
+        </div>
     </main>
 </div>

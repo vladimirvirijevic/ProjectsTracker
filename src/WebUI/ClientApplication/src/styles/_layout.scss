@@ -26,7 +26,6 @@
     flex-direction: column;
     justify-content: space-between;
     width: 50rem;
-    height: 60rem;
     padding: 3rem 6rem 2rem 6rem;
     text-align: center;
     box-shadow: var(--shadow-dark);
@@ -49,8 +48,23 @@
 }
 
 .main-content {
-    padding-left: 300px;
+    padding-left: 250px;
     height: 100%;
     width: 100%;
     background-color: var(--color-grey-background);
+}
+
+.section-wrapper {
+    padding: 5rem;
+}
+
+.timer {
+    background: #fff;
+    box-shadow: var(--shadow-dark);
+    padding: 2rem 8rem;
+    border-radius: .5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
