@@ -14,6 +14,9 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { ProjectsCreateComponent } from './projects/projects-create/projects-create.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { ModalModule } from './_modal';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { ProjectDetailComponent } from './projects/project-detail/project-detail
     TimerComponent,
     ProjectsCreateComponent,
     ProjectsListComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,8 @@ import { ProjectDetailComponent } from './projects/project-detail/project-detail
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
+    ModalModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

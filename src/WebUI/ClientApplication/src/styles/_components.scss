@@ -367,3 +367,17 @@
         color: rgb(41, 41, 41);
     }
 }
+
+
+///////////////////////////
+/////// TASK-CATEGORY
+.task-category {
+    flex: 0 0 30%;
+    box-shadow: var(--shadow-dark);
+    font-size: 1.6rem;
+
+    &__heading {
+        padding: 2rem;
+        text-align: center;
+    }
+}

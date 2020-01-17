@@ -1,0 +1,44 @@
+<div class="section-header">
+    <h1>Tasks</h1>
+</div>
+
+<div class="tasks">
+    <div class="task-category">
+        <div class="task-category__heading">
+            <h4>Todo</h4>
+        </div>
+        <div class="task-category__body">
+
+        </div>
+    </div>
+
+    <div class="task-category">
+        <div class="task-category__heading">
+            <h4>Doing</h4>
+        </div>
+        <div class="task-category__body">
+    
+        </div>
+    </div>
+
+    <div class="task-category">
+        <div class="task-category__heading">
+            <h4>Done</h4>
+        </div>
+        <div class="task-category__body">
+    
+        </div>
+    </div>
+</div>
+
+<div>
+    <h1>{{ bodyText }}</h1>
+    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
+</div>
+
+<jw-modal id="custom-modal-1">
+    <h1>A Custom Modal!</h1>
+    <p>Home page text: <input type="text" [(ngModel)]="bodyText"/></p>
+    <button (click)="closeModal('custom-modal-1');">Close</button>
+</jw-modal>
+
