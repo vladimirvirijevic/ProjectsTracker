@@ -339,6 +339,13 @@
             background-color: var(--color-green-dark);
         }
     }
+
+    &__link {
+        display: block;
+        margin-top: 2rem;
+        text-decoration: none;
+        color: rgb(41, 41, 41);
+    }
 }
 
 ///////////////////////////
