@@ -1,7 +1,10 @@
 <div class="section-header">
     <h1>Tasks</h1>
+
+    
 </div>
 
+<a (click)="openModal('create-task-modal')" class="create-task-btn">+ Add new</a>
 <div class="tasks">
     <div class="task-category">
         <div class="task-category__heading">
@@ -31,14 +34,24 @@
     </div>
 </div>
 
-<div>
-    <h1>{{ bodyText }}</h1>
-    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
-</div>
-
-<jw-modal id="custom-modal-1">
-    <h1>A Custom Modal!</h1>
-    <p>Home page text: <input type="text" [(ngModel)]="bodyText"/></p>
-    <button (click)="closeModal('custom-modal-1');">Close</button>
+<jw-modal id="create-task-modal">
+    <form class="create-task-form" [formGroup]="createTaskForm" (ngSubmit)="onSubmit()">
+        <h1 class="create-task-form__heading">Create New Task</h1>
+        <div class="create-task-form__field">
+            <input 
+                formControlName="taskName"
+                required
+                placeholder="Task Name"
+                class="create-task-form__input" 
+                type="text">
+            <div *ngIf="taskName.invalid && (taskName.dirty || taskName.touched)" class="invalid">
+                <div *ngIf="taskName.errors.required">
+                    Task Name is required.
+                </div>
+            </div>
+            <button type="submit" class="button button-green create-task-form__btn">+ Add</button>
+            <button type="button" class="button button-red create-task-form__btn-close" (click)="closeModal('create-task-modal')">X Close</button>
+        </div>
+    </form>
 </jw-modal>
 

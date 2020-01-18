@@ -1,0 +1,37 @@
+.button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: .5rem;
+    border: none;
+}
+
+.button-green {
+    color: #fff;
+    background: var(--color-green);
+
+    &:hover {
+        background: var(--color-green-dark);
+    }
+}
+
+.button-blue {
+    color: #fff;
+    background: var(--color-blue-main);
+
+    &:hover {
+        background: var(--color-blue-main-darker);
+    }
+}
+
+.button-red {
+    color: #fff;
+    background: var(--color-red);
+
+    &:hover {
+        background: var(--color-red-dark);
+    }
+}

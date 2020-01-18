@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../_modal';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-tasks',
@@ -7,14 +8,20 @@ import { ModalService } from '../_modal';
   styles: []
 })
 export class TasksComponent implements OnInit {
-  bodyText: string;
+  createTaskForm: FormGroup;
 
   constructor(
-    private modalService: ModalService
+    private modalService: ModalService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.createTaskForm = this.fb.group({
+      'taskName': ['', Validators.required]
+    });
   }
+
+  get taskName() { return this.createTaskForm.get('taskName'); }
 
   openModal(id: string) {
     this.modalService.open(id);
@@ -22,5 +29,13 @@ export class TasksComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  onSubmit() {
+    if (this.createTaskForm.invalid) {
+      return;
+    }
+
+    console.log('radi');
   }
 }
