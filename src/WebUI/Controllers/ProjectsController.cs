@@ -1,4 +1,5 @@
-﻿using Application.Projects.Commands.CreateProject;
+﻿using Application.Projects.Commands.AddTaskToProject;
+using Application.Projects.Commands.CreateProject;
 using Application.Projects.Commands.DeleteProject;
 using Application.Projects.Commands.UpdateProject;
 using Application.Projects.Queries.GetAllProjects;
@@ -74,6 +75,20 @@ namespace WebUI.Controllers
         {
             command.Id = id;
             await _mediator.Send(command);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddTask([FromBody] AddTaskToProjectCommand command)
+        {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+            var currentUser = _userService.GetById(int.Parse(userId));
+
+            command.Username = currentUser.Username;
+
+            var result = _mediator.Send(command);
 
             return Ok();
         }
