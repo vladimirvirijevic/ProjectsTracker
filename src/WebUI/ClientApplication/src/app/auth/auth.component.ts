@@ -30,9 +30,11 @@ export class AuthComponent implements OnInit {
     private fb: FormBuilder
   ) { 
     // redirect to home if already logged in
+    /*
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
     }
+    */
 
     this.authForm = this.fb.group({
       'username': ['', [Validators.required, Validators.minLength(3)]],

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/_models';
 import { ProjectService } from 'src/app/_services/project.service';
+import { AuthenticationService } from 'src/app/_services';
 
 @Component({
   selector: 'app-projects-list',
@@ -11,7 +12,8 @@ export class ProjectsListComponent implements OnInit {
   projects: Project[] = [];
 
   constructor(
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -19,7 +21,7 @@ export class ProjectsListComponent implements OnInit {
   }
 
   getProjects() {
-    this.projectService.getAll()
+    this.projectService.getAll(this.authService.currentUserValue.username)
       .subscribe(
         data => {
           console.log(data);

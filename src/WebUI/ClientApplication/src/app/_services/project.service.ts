@@ -17,8 +17,8 @@ export class ProjectService {
     return throwError(error);
   }
 
-  getAll(): Observable<Project[]> {
-    return this.http.get<Project[]>(`${environment.api_url}/projects/getall`).pipe(
+  getAll(username: string): Observable<Project[]> {
+    return this.http.get<Project[]>(`${environment.api_url}/projects/getall/${username}`).pipe(
       tap(data => console.log(data)),
       catchError(this.handleError)
     );

@@ -30,11 +30,17 @@ namespace WebUI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [Route("{username}")]
+        public async Task<IActionResult> GetAll([FromRoute] string username)
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
             var currentUser = _userService.GetById(int.Parse(userId));
+
+            if (username != currentUser.Username)
+            {
+                return Unauthorized();
+            }
 
             var result = await _mediator.Send(new GetAllProjectsQuery { Username = currentUser.Username });
 

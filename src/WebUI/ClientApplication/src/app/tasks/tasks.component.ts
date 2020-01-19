@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../_modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ProjectService } from '../_services';
+import { Project } from '../_models';
 
 @Component({
   selector: 'app-tasks',
@@ -9,10 +11,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class TasksComponent implements OnInit {
   createTaskForm: FormGroup;
+  projects: Project[];
+  currentProject: Project;
 
   constructor(
     private modalService: ModalService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private projectService: ProjectService
   ) { }
 
   ngOnInit() {
@@ -35,7 +40,9 @@ export class TasksComponent implements OnInit {
     if (this.createTaskForm.invalid) {
       return;
     }
+  }
 
-    console.log('radi');
+  getProjects() {
+    //this.projectService.getAll()
   }
 }
