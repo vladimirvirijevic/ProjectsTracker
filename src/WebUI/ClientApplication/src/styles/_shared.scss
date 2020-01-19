@@ -27,6 +27,15 @@
     }
 }
 
+.button-yellow {
+    color: #fff;
+    background: var(--color-yellow);
+
+    &:hover {
+        background: var(--color-yellow-dark);
+    }
+}
+
 .button-red {
     color: #fff;
     background: var(--color-red);

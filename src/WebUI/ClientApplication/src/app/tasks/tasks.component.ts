@@ -14,6 +14,7 @@ export class TasksComponent implements OnInit {
   projects: Project[];
   selectedProjectName: string;
   selectedProject: Project;
+  projectIsSelected = false;
 
   constructor(
     private modalService: ModalService,
@@ -55,7 +56,13 @@ export class TasksComponent implements OnInit {
   }
 
   getSelectedProject() {
+    this.projectIsSelected = true;
     this.selectedProject = this.projects.filter(x => x.name === this.selectedProjectName)[0];
     console.log(this.selectedProject);
+  }
+
+  changeProject() {
+    this.projectIsSelected = false;
+    this.selectedProject = null;
   }
 }

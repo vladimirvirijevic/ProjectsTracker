@@ -113,4 +113,10 @@
 .tasks {
     display: flex;
     justify-content: space-between;
+    margin: 2rem 0;
+    
+    &__current-text {
+        font-size: 1.7rem;
+        margin: 2rem 0;
+    }
 }

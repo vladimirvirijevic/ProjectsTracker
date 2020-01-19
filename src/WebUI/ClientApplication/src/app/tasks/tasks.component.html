@@ -4,7 +4,7 @@
     
 </div>
 
-<div class="project-choice">
+<div *ngIf="!projectIsSelected" class="project-choice">
     <h4 class="project-choice__text">Please choose project</h4>
     <select [(ngModel)]="selectedProjectName" class="project-choice__select">
         <option *ngFor="let project of projects">{{ project.name }}</option>
@@ -12,8 +12,10 @@
     <a (click)="getSelectedProject()" class="button button-blue project-choice__btn">Select project</a>
 </div>
 
-<div style="display: none;" class="tasks-wrapper">
-    <a (click)="openModal('create-task-modal')" class="create-task-btn">+ Add new</a>
+<div *ngIf="projectIsSelected" class="tasks-wrapper">
+    <h4 class="tasks__current-text">Current project: {{ selectedProject.name }}</h4>
+    <a (click)="openModal('create-task-modal')" class="create-task-btn">Add New Task</a>
+    <a (click)="changeProject()" class="button button-yellow project-choice__btn">Change Project</a>
     <div class="tasks">
     
         <div class="task-category">
