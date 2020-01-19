@@ -24,6 +24,11 @@ export class TasksComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.projectService.getCurrentProject) {
+      this.selectedProject = this.projectService.getCurrentProject;
+      this.projectIsSelected = true;
+    }
+
     this.getProjects();
     this.createTaskForm = this.fb.group({
       'taskName': ['', Validators.required]
@@ -65,10 +70,14 @@ export class TasksComponent implements OnInit {
       );
   }
 
-  getSelectedProject() {
+  selectProject() {
     this.projectIsSelected = true;
     this.selectedProject = this.projects.filter(x => x.name === this.selectedProjectName)[0];
-    console.log(this.selectedProject);
+
+    if (this.selectedProject) {
+      this.projectService.setCurrentProject(this.selectedProject);
+      console.log(this.selectedProject);
+    }
   }
 
   changeProject() {

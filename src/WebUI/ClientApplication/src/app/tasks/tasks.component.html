@@ -9,7 +9,7 @@
     <select [(ngModel)]="selectedProjectName" class="project-choice__select">
         <option *ngFor="let project of projects">{{ project.name }}</option>
     </select>
-    <a (click)="getSelectedProject()" class="button button-blue project-choice__btn">Select project</a>
+    <a (click)="selectProject()" class="button button-blue project-choice__btn">Select project</a>
 </div>
 
 <div *ngIf="projectIsSelected" class="tasks-wrapper">

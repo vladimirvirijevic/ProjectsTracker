@@ -2,13 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Project } from '../_models';
-import { throwError, Observable } from 'rxjs';
+import { throwError, Observable, BehaviorSubject } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
+  private currentProjectSubject = new BehaviorSubject<Project>(null);
+
+  setCurrentProject(project: Project) {
+    this.currentProjectSubject = new BehaviorSubject<Project>(project);
+  }
+
+  public get getCurrentProject(): Project {
+    return this.currentProjectSubject.value;
+  }
 
   constructor(private http: HttpClient) { }
 
