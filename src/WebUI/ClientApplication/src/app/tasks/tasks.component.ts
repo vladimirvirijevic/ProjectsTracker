@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../_modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ProjectService } from '../_services';
+import { ProjectService, AuthenticationService } from '../_services';
 import { Project } from '../_models';
 
 @Component({
@@ -12,15 +12,18 @@ import { Project } from '../_models';
 export class TasksComponent implements OnInit {
   createTaskForm: FormGroup;
   projects: Project[];
-  currentProject: Project;
+  selectedProjectName: string;
+  selectedProject: Project;
 
   constructor(
     private modalService: ModalService,
     private fb: FormBuilder,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
+    this.getProjects();
     this.createTaskForm = this.fb.group({
       'taskName': ['', Validators.required]
     });
@@ -43,6 +46,16 @@ export class TasksComponent implements OnInit {
   }
 
   getProjects() {
-    //this.projectService.getAll()
+    this.projectService.getAll(this.authService.currentUserValue.username)
+      .subscribe(
+        data => {
+          this.projects = data;
+        }
+      );
+  }
+
+  getSelectedProject() {
+    this.selectedProject = this.projects.filter(x => x.name === this.selectedProjectName)[0];
+    console.log(this.selectedProject);
   }
 }

@@ -421,3 +421,25 @@
         margin-left: 1.5rem;
     }
 }
+
+
+////////////////////
+///// PROJECT-CHOICE
+.project-choice {
+    font-size: 1.6rem;
+
+    &__text {
+        font-size: 2rem;
+    }
+
+    &__select {
+        display: block;
+        margin: 2rem 0;
+        padding: 1.5rem 3rem;
+    }
+
+
+    &__btn {
+        
+    }
+}

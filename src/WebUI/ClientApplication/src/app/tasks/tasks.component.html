@@ -4,34 +4,46 @@
     
 </div>
 
-<a (click)="openModal('create-task-modal')" class="create-task-btn">+ Add new</a>
-<div class="tasks">
-    <div class="task-category">
-        <div class="task-category__heading">
-            <h4>Todo</h4>
-        </div>
-        <div class="task-category__body">
+<div class="project-choice">
+    <h4 class="project-choice__text">Please choose project</h4>
+    <select [(ngModel)]="selectedProjectName" class="project-choice__select">
+        <option *ngFor="let project of projects">{{ project.name }}</option>
+    </select>
+    <a (click)="getSelectedProject()" class="button button-blue project-choice__btn">Select project</a>
+</div>
 
-        </div>
-    </div>
-
-    <div class="task-category">
-        <div class="task-category__heading">
-            <h4>Doing</h4>
-        </div>
-        <div class="task-category__body">
+<div style="display: none;" class="tasks-wrapper">
+    <a (click)="openModal('create-task-modal')" class="create-task-btn">+ Add new</a>
+    <div class="tasks">
     
+        <div class="task-category">
+            <div class="task-category__heading">
+                <h4>Todo</h4>
+            </div>
+            <div class="task-category__body">
+    
+            </div>
+        </div>
+    
+        <div class="task-category">
+            <div class="task-category__heading">
+                <h4>Doing</h4>
+            </div>
+            <div class="task-category__body">
+    
+            </div>
+        </div>
+    
+        <div class="task-category">
+            <div class="task-category__heading">
+                <h4>Done</h4>
+            </div>
+            <div class="task-category__body">
+    
+            </div>
         </div>
     </div>
 
-    <div class="task-category">
-        <div class="task-category__heading">
-            <h4>Done</h4>
-        </div>
-        <div class="task-category__body">
-    
-        </div>
-    </div>
 </div>
 
 <jw-modal id="create-task-modal">
