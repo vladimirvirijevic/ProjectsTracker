@@ -44,6 +44,16 @@ export class TasksComponent implements OnInit {
     if (this.createTaskForm.invalid) {
       return;
     }
+
+    const newTask = {
+      name: this.taskName.value,
+      projectId: this.selectedProject.id
+    };
+
+    console.log(newTask);
+
+    this.projectService.addTask(newTask)
+      .subscribe();
   }
 
   getProjects() {

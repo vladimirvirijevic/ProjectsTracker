@@ -28,7 +28,11 @@ export class ProjectService {
     return this.http.get<Project>(`${environment.api_url}/projects/get/${id}`);
   }
 
-  create(project: object) {
+  create(project) {
     return this.http.post<any>(`${environment.api_url}/projects/post`, project);
+  }
+
+  addTask(task) {
+    return this.http.post<any>(`${environment.api_url}/projects/addtask`, task);
   }
 }

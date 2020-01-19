@@ -94,7 +94,7 @@ namespace WebUI.Controllers
 
             command.Username = currentUser.Username;
 
-            var result = _mediator.Send(command);
+            var result = await _mediator.Send(command);
 
             return Ok();
         }

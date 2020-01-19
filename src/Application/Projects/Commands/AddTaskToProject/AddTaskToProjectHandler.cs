@@ -18,7 +18,7 @@ namespace Application.Projects.Commands.AddTaskToProject
 
         public async Task<Unit> Handle(AddTaskToProjectCommand request, CancellationToken cancellationToken)
         {
-            var project = _context.Projects.Where(p => p.Id == request.ProjectId).FirstOrDefault();
+            var project = _context.Projects.FirstOrDefault(p => p.Id == request.ProjectId);
 
             if (project == null)
             {
@@ -33,6 +33,7 @@ namespace Application.Projects.Commands.AddTaskToProject
             };
 
             project.Tasks.Add(task);
+            await _context.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }
