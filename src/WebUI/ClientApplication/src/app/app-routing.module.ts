@@ -11,7 +11,7 @@ import { ProjectDetailComponent } from './projects/project-detail/project-detail
 import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'login', component: AuthComponent },
   { path: 'register', component: AuthComponent },
   { path: 'app', canActivate: [AuthGuard], component: HomeComponent, children: [

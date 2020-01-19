@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../_services';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  username = 'Guest';
+  constructor(
+    private authService: AuthenticationService
+  ) { }
 
   ngOnInit() {
+    this.username = this.authService.currentUserValue.username;
   }
 
 }

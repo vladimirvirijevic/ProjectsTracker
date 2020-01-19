@@ -10,11 +10,6 @@ export class UserService {
 
     constructor(private http: HttpClient) { }
 
-    headers = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
-    httpOptions = {
-        headers: this.headers
-    };
-
     register(user: RegisterModel) {
         return this.http.post<any>(`${environment.api_url}/users/register`, user);
     }
