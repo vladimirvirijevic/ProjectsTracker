@@ -16,12 +16,6 @@ export class ProjectService {
     this.currentProjectSubject = new BehaviorSubject<Project>(project);
   }
 
-  /*
-  public get getCurrentProject(): Project {
-    return this.currentProjectSubject.value;
-  }
-  
-  */
   public get getCurrentProject(): Project {
     const jsonProject = JSON.parse(localStorage.getItem('currentProject'));
 

@@ -395,6 +395,7 @@
     flex: 0 0 30%;
     box-shadow: var(--shadow-dark);
     font-size: 1.6rem;
+    background: var(--color-grey-light);
 
     &__heading {
         padding: 2rem;
@@ -405,14 +406,29 @@
 ///////////////////////
 //// Task-Item
 .task-item {
-    background: var(--color-grey-dark-3);
+    background: #fff;
     margin: 1rem;
     padding: 1.5rem;
     text-align: center;
+    box-shadow: var(--shadow-light);
+    cursor: pointer;
 
-    &__text {
-        
+    &__title {
+        margin-bottom: 1.5rem;
     }
+
+    &__icons {
+        display: flex;
+        justify-content: space-between;
+        width: 8rem;
+        margin: 0 auto;
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+    }
+
 }
 
 ////////////////////////////
