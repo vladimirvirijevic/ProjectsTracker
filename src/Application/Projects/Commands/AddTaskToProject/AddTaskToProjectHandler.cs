@@ -27,7 +27,7 @@ namespace Application.Projects.Commands.AddTaskToProject
 
             var task = new TaskItem
             {
-                ProjectId = project.Id,
+                ProjectId = request.ProjectId,
                 Name = request.Name,
                 Status = "TODO"
             };

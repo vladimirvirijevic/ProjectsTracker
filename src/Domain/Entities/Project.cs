@@ -14,6 +14,6 @@ namespace Domain.Entities
         public string Description { get; set; }
         public string Username { get; set; }
 
-        public ICollection<TaskItem> Tasks { get; set; }
+        public virtual ICollection<TaskItem> Tasks { get; set; }
     }
 }
