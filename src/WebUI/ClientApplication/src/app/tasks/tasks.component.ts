@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../_modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProjectService, AuthenticationService } from '../_services';
-import { Project } from '../_models';
+import { Project, Task } from '../_models';
 
 @Component({
   selector: 'app-tasks',
@@ -15,6 +15,9 @@ export class TasksComponent implements OnInit {
   selectedProjectName: string;
   selectedProject: Project;
   projectIsSelected = false;
+  todoTasks: Task[] = [];
+  workingTasks: Task[] = [];
+  doneTasks: Task[] = [];
 
   constructor(
     private modalService: ModalService,
@@ -24,12 +27,15 @@ export class TasksComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getProjects();
+
     if (this.projectService.getCurrentProject) {
       this.selectedProject = this.projectService.getCurrentProject;
       this.projectIsSelected = true;
+
+      this.loadTasks();
     }
 
-    this.getProjects();
     this.createTaskForm = this.fb.group({
       'taskName': ['', Validators.required]
     });
@@ -77,6 +83,8 @@ export class TasksComponent implements OnInit {
     if (this.selectedProject) {
       this.projectService.setCurrentProject(this.selectedProject);
       console.log(this.selectedProject);
+
+      this.loadTasks();
     }
   }
 
@@ -85,7 +93,12 @@ export class TasksComponent implements OnInit {
     this.selectedProject = null;
   }
 
-  loadTodoTasks() {
-    
+  loadTasks() {
+    this.todoTasks = this.selectedProject.tasks.filter(x => x.status === 'TODO');
+    console.log(this.todoTasks);
+    this.workingTasks = this.selectedProject.tasks.filter(x => x.status === 'WORKING');
+    console.log(this.workingTasks);
+    this.doneTasks = this.selectedProject.tasks.filter(x => x.status === 'DONE');
+    console.log(this.doneTasks);
   }
 }
