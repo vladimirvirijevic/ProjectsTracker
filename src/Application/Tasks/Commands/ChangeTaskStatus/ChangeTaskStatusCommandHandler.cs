@@ -1,12 +1,11 @@
 ﻿using Application.Dtos;
 using MediatR;
 using System.Linq;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using Application.Common.Interfaces;
 
-namespace Application.Tasks.Commands
+namespace Application.Tasks.Commands.ChangeTaskStatus
 {
     public class ChangeTaskStatusCommandHandler : IRequestHandler<ChangeTaskStatusCommand, TaskItemDto>
     {

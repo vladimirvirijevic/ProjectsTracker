@@ -1,7 +1,7 @@
 ﻿using Application.Dtos;
 using MediatR;
 
-namespace Application.Tasks.Commands
+namespace Application.Tasks.Commands.ChangeTaskStatus
 {
     public class ChangeTaskStatusCommand : IRequest<TaskItemDto>
     {

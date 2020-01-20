@@ -1,4 +1,5 @@
-﻿using Application.Tasks.Commands;
+﻿using Application.Tasks.Commands.ChangeTaskStatus;
+using Application.Tasks.Commands.DeleteTask;
 using Application.Tasks.Queries.GetAllTasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -51,6 +52,25 @@ namespace WebUI.Controllers
             var result = await _mediator.Send(command);
 
             return Ok(result);
+        }
+
+        [HttpDelete("{projectId}/{id}")]
+        public async Task<IActionResult> Delete(int projectId, int id)
+        {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+            var currentUser = _userService.GetById(int.Parse(userId));
+
+            var command = new DeleteTaskCommand
+            {
+                Id = id,
+                ProjectId = projectId,
+                Username = currentUser.Username
+            };
+
+            await _mediator.Send(command);
+
+            return Ok();
         }
     }
 }
