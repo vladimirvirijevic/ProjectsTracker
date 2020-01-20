@@ -84,4 +84,8 @@ export class TasksComponent implements OnInit {
     this.projectIsSelected = false;
     this.selectedProject = null;
   }
+
+  loadTodoTasks() {
+    
+  }
 }
