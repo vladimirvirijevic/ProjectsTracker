@@ -1,4 +1,5 @@
-﻿using Application.Tasks.Queries.GetAllTasks;
+﻿using Application.Tasks.Commands;
+using Application.Tasks.Queries.GetAllTasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,21 @@ namespace WebUI.Controllers
             var currentUser = _userService.GetById(int.Parse(userId));
 
             var result = _mediator.Send(new GetAllTasksQuery { ProjectId = projectId, Username = currentUser.Username });
+
+            return Ok(result);
+        }
+
+        
+        [HttpPost("{projectId}")]
+        public async Task<IActionResult> ChangeStatus([FromRoute] int projectId, [FromBody] ChangeTaskStatusCommand command)
+        {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+            var currentUser = _userService.GetById(int.Parse(userId));
+
+            command.Username = currentUser.Username;
+
+            var result = await _mediator.Send(command);
 
             return Ok(result);
         }
