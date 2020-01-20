@@ -26,10 +26,10 @@
                 <div *ngFor="let task of todoTasks" class="task-item">
                     <p class="task-item__title">{{ task.name }}</p>
                     <div class="task-item__icons">
-                        <svg class="task-item__icon blue-icon">
+                        <svg (click)="changeTaskStatus('WORKING', task.id)" class="task-item__icon blue-icon">
                             <use xlink:href="../assets/sprite.svg#icon-briefcase"></use>
                         </svg>
-                        <svg class="task-item__icon green-icon">
+                        <svg (click)="changeTaskStatus('DONE', task.id)" class="task-item__icon green-icon">
                             <use xlink:href="../assets/sprite.svg#icon-checkmark"></use>
                         </svg>
                         <svg class="task-item__icon red-icon">
@@ -45,7 +45,17 @@
                 <h4>Doing</h4>
             </div>
             <div class="task-category__body">
-    
+                <div *ngFor="let task of workingTasks" class="task-item">
+                    <p class="task-item__title">{{ task.name }}</p>
+                    <div class="task-item__icons">
+                        <svg (click)="changeTaskStatus('DONE', task.id)" class="task-item__icon green-icon">
+                            <use xlink:href="../assets/sprite.svg#icon-checkmark"></use>
+                        </svg>
+                        <svg class="task-item__icon red-icon">
+                            <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
+                        </svg>
+                    </div>
+                </div>
             </div>
         </div>
     
@@ -54,7 +64,14 @@
                 <h4>Done</h4>
             </div>
             <div class="task-category__body">
-    
+                <div *ngFor="let task of doneTasks" class="task-item">
+                    <p class="task-item__title">{{ task.name }}</p>
+                    <div class="task-item__icons">
+                        <svg class="task-item__icon red-icon">
+                            <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
+                        </svg>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -411,7 +411,6 @@
     padding: 1.5rem;
     text-align: center;
     box-shadow: var(--shadow-light);
-    cursor: pointer;
 
     &__title {
         margin-bottom: 1.5rem;
@@ -419,12 +418,14 @@
 
     &__icons {
         display: flex;
-        justify-content: space-between;
-        width: 8rem;
+        justify-content: center;
+        align-items: center;
         margin: 0 auto;
     }
 
     &__icon {
+        margin: 0 .5rem;
+        cursor: pointer;
         height: 2rem;
         width: 2rem;
     }

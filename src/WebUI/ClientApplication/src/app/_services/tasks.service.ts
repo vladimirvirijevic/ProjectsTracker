@@ -16,4 +16,8 @@ export class TasksService {
   getAll(projectId: number): Observable<Task[]> {
     return this.http.get<Task[]>(`${environment.api_url}/tasks/get/${projectId}`);
   }
+
+  changeStatus(task) {
+    return this.http.put<any>(`${environment.api_url}/tasks/changestatus`, task);
+  }
 }

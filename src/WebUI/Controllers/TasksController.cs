@@ -39,8 +39,8 @@ namespace WebUI.Controllers
         }
 
         
-        [HttpPost("{projectId}")]
-        public async Task<IActionResult> ChangeStatus([FromRoute] int projectId, [FromBody] ChangeTaskStatusCommand command)
+        [HttpPut]
+        public async Task<IActionResult> ChangeStatus([FromBody] ChangeTaskStatusCommand command)
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;

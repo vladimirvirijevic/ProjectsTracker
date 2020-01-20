@@ -71,7 +71,7 @@ export class TasksComponent implements OnInit {
           this.loadTasks();
           this.closeModal('create-task-modal');
         }
-      );    
+      );
   }
 
   getProjects() {
@@ -99,6 +99,23 @@ export class TasksComponent implements OnInit {
     this.projectIsSelected = false;
     this.selectedProject = null;
     this.loadTasks();
+  }
+
+  changeTaskStatus(changedStatus: string, taskId: number) {
+    const task = {
+      username: this.authService.currentUserValue.username,
+      id: taskId,
+      status: changedStatus,
+      projectId: this.selectedProject.id
+    };
+
+    this.taskService.changeStatus(task)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.loadTasks();
+        }
+      );
   }
 
   loadTasks() {
