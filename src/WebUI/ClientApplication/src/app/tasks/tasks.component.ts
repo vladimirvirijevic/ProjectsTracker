@@ -128,4 +128,11 @@ export class TasksComponent implements OnInit {
         }
       );
   }
+
+  deleteTask(taskId) {
+    this.taskService.delete(this.selectedProject.id, taskId)
+      .subscribe(
+        () => this.loadTasks()
+      );
+  }
 }

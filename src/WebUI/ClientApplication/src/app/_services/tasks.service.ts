@@ -20,4 +20,8 @@ export class TasksService {
   changeStatus(task) {
     return this.http.put<any>(`${environment.api_url}/tasks/changestatus`, task);
   }
+
+  delete(projectId, taskId) {
+    return this.http.delete<any>(`${environment.api_url}/tasks/delete/${projectId}/${taskId}`);
+  }
 }
