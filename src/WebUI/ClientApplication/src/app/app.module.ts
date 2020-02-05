@@ -11,7 +11,6 @@ import { ProjectsComponent } from './projects/projects.component';
 import { TimerComponent } from './timer/timer.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { ProjectsCreateComponent } from './projects/projects-create/projects-create.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { TasksComponent } from './tasks/tasks.component';
@@ -25,7 +24,6 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     ProjectsComponent,
     TimerComponent,
-    ProjectsCreateComponent,
     ProjectsListComponent,
     ProjectDetailComponent,
     TasksComponent

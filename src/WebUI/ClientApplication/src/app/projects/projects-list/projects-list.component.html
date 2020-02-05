@@ -1,8 +1,7 @@
 <div class="project-header">
     <h1>My Projects</h1>
-    <a routerLink="create" class="project-header__create-button">CREATE NEW</a>
 </div>
-
+<a (click)="openModal('create-project-modal')" class="button button-green create-new-project-btn">CREATE NEW</a>
 <div class="project-list">
     <div class="project-list-heading">
         <p>Name</p>
@@ -18,3 +17,39 @@
         <p>TestClient1</p>
     </div>
 </div>
+
+<jw-modal id="create-project-modal">
+    <form class="create-project-form" [formGroup]="createProjectForm" (ngSubmit)="onSubmit()">
+        <h1 class="create-project-form__heading">Create New Project</h1>
+        <div class="create-project-form__field">
+            <input 
+                formControlName="name"
+                required
+                placeholder="Project Name"
+                class="create-project-form__input" 
+                type="text">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid">
+                <div *ngIf="name.errors.required">
+                    Project Name is required.
+                </div>
+            </div>
+            
+        </div>
+        <div class="create-project-form__field">
+            <textarea rows="6"
+                formControlName="description" 
+                required 
+                class="create-project-form__input textarea_input"
+                [ngClass]="{ 'is-invalid': submitted && description.errors }" type="text" 
+                placeholder="Description">
+            </textarea>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="invalid">
+                <div *ngIf="description.errors.required">
+                    Description is required.
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="button button-green create-task-form__btn">+ Add</button>
+        <button type="button" class="button button-red create-task-form__btn-close" (click)="closeModal('create-project-modal')">X Close</button>
+    </form>
+</jw-modal>

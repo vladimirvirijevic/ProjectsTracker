@@ -34,6 +34,7 @@ export class TasksComponent implements OnInit {
     if (this.projectService.getCurrentProject) {
       this.selectedProject = this.projectService.getCurrentProject;
       this.projectIsSelected = true;
+      //console.log(this.selectProject);
 
       this.loadTasks();
     }
@@ -63,8 +64,6 @@ export class TasksComponent implements OnInit {
       projectId: this.selectedProject.id
     };
 
-    console.log(newTask);
-
     this.projectService.addTask(newTask)
       .subscribe(
         data => {
@@ -86,11 +85,10 @@ export class TasksComponent implements OnInit {
   selectProject() {
     this.projectIsSelected = true;
     this.selectedProject = this.projects.filter(x => x.name === this.selectedProjectName)[0];
+    console.log(this.selectedProjectName);
 
     if (this.selectedProject) {
       this.projectService.setCurrentProject(this.selectedProject);
-      console.log(this.selectedProject);
-
       this.loadTasks();
     }
   }
@@ -112,7 +110,6 @@ export class TasksComponent implements OnInit {
     this.taskService.changeStatus(task)
       .subscribe(
         data => {
-          console.log(data);
           this.loadTasks();
         }
       );
@@ -122,9 +119,8 @@ export class TasksComponent implements OnInit {
     this.taskService.getAll(this.selectedProject.id)
       .subscribe(
         data => {
-          this.todoTasks = data.result.filter(x => x.status === 'TODO');
-          this.workingTasks = data.result.filter(x => x.status === 'WORKING');
-          this.doneTasks = data.result.filter(x => x.status === 'DONE');
+          console.log(data);
+          this.setTasks(data);
         }
       );
   }
@@ -134,5 +130,11 @@ export class TasksComponent implements OnInit {
       .subscribe(
         () => this.loadTasks()
       );
+  }
+
+  setTasks(data) {
+    this.todoTasks = data.result.filter(x => x.status === 'TODO');
+    this.workingTasks = data.result.filter(x => x.status === 'WORKING');
+    this.doneTasks = data.result.filter(x => x.status === 'DONE');
   }
 }
