@@ -7,7 +7,7 @@
 <div *ngIf="!projectIsSelected" class="project-choice">
     <h4 class="project-choice__text">Please choose project</h4>
     <select [(ngModel)]="selectedProjectName" class="project-choice__select">
-        <option *ngFor="let project of projects">{{ project.name }}</option>
+        <option selected *ngFor="let project of projects">{{ project.name }}</option>
     </select>
     <a (click)="selectProject()" class="button button-blue project-choice__btn">Select project</a>
 </div>

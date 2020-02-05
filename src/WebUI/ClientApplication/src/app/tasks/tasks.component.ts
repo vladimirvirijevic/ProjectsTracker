@@ -30,12 +30,10 @@ export class TasksComponent implements OnInit {
 
   ngOnInit() {
     this.getProjects();
-
+    
     if (this.projectService.getCurrentProject) {
       this.selectedProject = this.projectService.getCurrentProject;
       this.projectIsSelected = true;
-      //console.log(this.selectProject);
-
       this.loadTasks();
     }
 
@@ -78,11 +76,19 @@ export class TasksComponent implements OnInit {
       .subscribe(
         data => {
           this.projects = data;
+          // set default selected project name to first project
+          if (this.projects) {
+            this.selectedProjectName = this.projects[0].name;
+          }
         }
       );
   }
 
   selectProject() {
+    if (!this.selectedProjectName) {
+      return;
+    }
+
     this.projectIsSelected = true;
     this.selectedProject = this.projects.filter(x => x.name === this.selectedProjectName)[0];
     console.log(this.selectedProjectName);
