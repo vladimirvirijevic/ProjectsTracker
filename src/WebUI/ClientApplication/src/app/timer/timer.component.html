@@ -1,20 +1,29 @@
 <div class="timer">
     <div class="timer-project">
-        <svg class="timer-project__icon">
-            <use xlink:href="../assets/sprite.svg#icon-briefcase"></use>
-        </svg>
-        <p class="timer-project__text">Choose projec</p>
-        <select class="timer-project__select">
-            <option class="timer-project__item" value="volvo">Project 1</option>
-            <option class="timer-project__item" value="volvo">Project 2</option>
-        </select>
+        <div *ngIf="timerIsRunning" class="timer-project__choosen">
+            <svg>
+                <use xlink:href="../assets/sprite.svg#icon-briefcase"></use>
+            </svg>
+            <p>Choosen project: {{ selectedProjectName }}</p>
+        </div>
+        
+        <div *ngIf="!timerIsRunning" class="timer-project__choice">
+            <svg class="timer-project__icon">
+                <use xlink:href="../assets/sprite.svg#icon-briefcase"></use>
+            </svg>
+            <p class="timer-project__text">Choose project</p>
+            <select [(ngModel)]="selectedProjectName" class="timer-project__select">
+                <option selected *ngFor="let project of projects">{{ project.name }}</option>
+            </select>
+        </div>
     </div>
     <div class="timer-time-info">
         <svg class="timer-time-info__icon">
             <use xlink:href="../assets/sprite.svg#icon-clock"></use>
         </svg>
-        <p class="timer-time-info__time">12:00</p>
-        <button class="timer-time-info__btn">START</button>
+        <p class="timer-time-info__time">{{ time | date:'mm:ss'}}</p>
+        <button *ngIf="!timerIsRunning" (click)="startTimer()" class="button button-green">START</button>
+        <button *ngIf="timerIsRunning" (click)="stopTimer()" class="button button-yellow">STOP</button>
         <svg class="timer-time-info__icon-trash">
             <use xlink:href="../assets/sprite.svg#icon-trash"></use>
         </svg>

@@ -224,6 +224,23 @@
     &__select {
         padding: .5rem;
     }
+
+    &__choice {
+        p {
+            display: inline-block;
+        }
+    }
+
+    &__choosen {
+        svg {
+            height: 2.2rem;
+            width: 2.2rem;
+            position: absolute;
+            top: -.1rem;
+            left: -3.5rem;
+            fill: var(--color-grey-dark-1);
+        }
+    }
 }
 
 ///////////////////////
@@ -258,6 +275,7 @@
 
     &__time {
         font-size: 2rem;
+        margin-right: 2rem;
     }
 
     &__btn {
