@@ -33,16 +33,13 @@ namespace WebUI.Controllers
         [Route("{username}")]
         public async Task<IActionResult> GetAll([FromRoute] string username)
         {
-            var claimsIdentity = this.User.Identity as ClaimsIdentity;
-            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
-            var currentUser = _userService.GetById(int.Parse(userId));
-
-            if (username != currentUser.Username)
+            var currentUsername = _userService.GetCurrentUser(this.User).Username;
+            if (username != currentUsername)
             {
                 return Unauthorized();
             }
 
-            var result = await _mediator.Send(new GetAllProjectsQuery { Username = currentUser.Username });
+            var result = await _mediator.Send(new GetAllProjectsQuery { Username = username });
 
             return Ok(result);
         }
@@ -51,11 +48,9 @@ namespace WebUI.Controllers
         [Route("{id}")]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
-            var claimsIdentity = this.User.Identity as ClaimsIdentity;
-            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
-            var currentUser = _userService.GetById(int.Parse(userId));
+            var currentUsername = _userService.GetCurrentUser(this.User).Username;
 
-            var result = await _mediator.Send(new GetProjectQuery { Username = currentUser.Username, Id = id });
+            var result = await _mediator.Send(new GetProjectQuery { Username = currentUsername, Id = id });
 
             return Ok(result);
         }
@@ -88,11 +83,9 @@ namespace WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddTask([FromBody] AddTaskToProjectCommand command)
         {
-            var claimsIdentity = this.User.Identity as ClaimsIdentity;
-            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
-            var currentUser = _userService.GetById(int.Parse(userId));
+            var currentUsername = _userService.GetCurrentUser(this.User).Username;
 
-            command.Username = currentUser.Username;
+            command.Username = currentUsername;
 
             var result = await _mediator.Send(command);
 

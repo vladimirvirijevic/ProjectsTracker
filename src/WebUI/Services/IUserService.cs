@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace WebUI.Services
@@ -13,5 +14,6 @@ namespace WebUI.Services
         User GetById(int id);
         Task<User> CreateAsync(User user, string password);
         string GenerateToken(User user);
+        User GetCurrentUser(ClaimsPrincipal principal);
     }
 }

@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="button button-green create-task-form__btn">+ Add</button>
+        <button (click)="closeModal('create-project-modal')" type="submit" class="button button-green create-task-form__btn">+ Add</button>
         <button type="button" class="button button-red create-task-form__btn-close" (click)="closeModal('create-project-modal')">X Close</button>
     </form>
 </jw-modal>

@@ -28,13 +28,11 @@ namespace WebUI.Controllers
         }
 
         [HttpGet("{projectId}")]
-        public async Task<IActionResult> Get([FromRoute] int projectId)
+        public async Task<IActionResult> GetAll([FromRoute] int projectId)
         {
-            var claimsIdentity = this.User.Identity as ClaimsIdentity;
-            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
-            var currentUser = _userService.GetById(int.Parse(userId));
+            var currentUsername = _userService.GetCurrentUser(this.User).Username;
 
-            var result = _mediator.Send(new GetAllTasksQuery { ProjectId = projectId, Username = currentUser.Username });
+            var result = _mediator.Send(new GetAllTasksQuery { ProjectId = projectId, Username = currentUsername });
 
             return Ok(result);
         }
@@ -43,11 +41,9 @@ namespace WebUI.Controllers
         [HttpPut]
         public async Task<IActionResult> ChangeStatus([FromBody] ChangeTaskStatusCommand command)
         {
-            var claimsIdentity = this.User.Identity as ClaimsIdentity;
-            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
-            var currentUser = _userService.GetById(int.Parse(userId));
+            var currentUsername = _userService.GetCurrentUser(this.User).Username;
 
-            command.Username = currentUser.Username;
+            command.Username = currentUsername;
 
             var result = await _mediator.Send(command);
 
@@ -57,15 +53,13 @@ namespace WebUI.Controllers
         [HttpDelete("{projectId}/{id}")]
         public async Task<IActionResult> Delete(int projectId, int id)
         {
-            var claimsIdentity = this.User.Identity as ClaimsIdentity;
-            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
-            var currentUser = _userService.GetById(int.Parse(userId));
+            var currentUsername = _userService.GetCurrentUser(this.User).Username;
 
             var command = new DeleteTaskCommand
             {
                 Id = id,
                 ProjectId = projectId,
-                Username = currentUser.Username
+                Username = currentUsername
             };
 
             await _mediator.Send(command);

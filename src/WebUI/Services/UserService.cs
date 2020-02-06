@@ -125,7 +125,16 @@ namespace WebUI.Services
             var tokenString = tokenHandler.WriteToken(token);
 
             return tokenString;
-        }     
+        }
+
+        public User GetCurrentUser(ClaimsPrincipal principal)
+        {
+            var claimsIdentity = principal.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+            User currentUser = GetById(int.Parse(userId));
+
+            return currentUser;
+        }
     }
 }
 
