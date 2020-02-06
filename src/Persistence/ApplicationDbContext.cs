@@ -1,7 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 
 namespace Persistence
 {
@@ -13,6 +12,7 @@ namespace Persistence
 
         public DbSet<Project> Projects { get; set; }
         public DbSet<TaskItem> Tasks { get; set; }
+        public DbSet<TimerInfo> Timers { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }
