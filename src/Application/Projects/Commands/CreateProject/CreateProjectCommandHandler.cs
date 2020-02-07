@@ -28,7 +28,7 @@ namespace Application.Projects.Commands.CreateProject
                 Username = request.Username
             };
 
-            _context.Projects.Add(entity);
+            await _context.Projects.AddAsync(entity);
             await _context.SaveChangesAsync(cancellationToken);
 
             ProjectDto projectDto = new ProjectDto(entity);

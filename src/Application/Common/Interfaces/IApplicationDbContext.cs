@@ -9,6 +9,8 @@ namespace Application.Common.Interfaces
     {
         DbSet<Project> Projects { get; set; }
         DbSet<User> Users { get; set; }
+        DbSet<TimerInfo> Timers { get; set; }
+        DbSet<TaskItem> Tasks { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
