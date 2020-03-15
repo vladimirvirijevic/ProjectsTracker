@@ -1,31 +1,54 @@
-<div class="timer">
-    <div class="timer-project">
-        <div *ngIf="timerIsRunning" class="timer-project__choosen">
-            <svg>
-                <use xlink:href="../assets/sprite.svg#icon-briefcase"></use>
-            </svg>
-            <p>Choosen project: {{ selectedProjectName }}</p>
-        </div>
-        
-        <div *ngIf="!timerIsRunning" class="timer-project__choice">
-            <svg class="timer-project__icon">
-                <use xlink:href="../assets/sprite.svg#icon-briefcase"></use>
-            </svg>
-            <p class="timer-project__text">Choose project</p>
-            <select [(ngModel)]="selectedProjectName" class="timer-project__select">
-                <option selected *ngFor="let project of projects">{{ project.name }}</option>
-            </select>
+<div class="row section__title">
+    <div class="col s12">
+        <h1>Timer <span *ngIf="timerIsRunning">- {{ selectedProjectName }}</span></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <div class="timer">
+            <div class="timer__project-choice">
+                <p>Choose project</p>
+                <select (change)="onChange($event.target.value)" [(ngModel)]="selectedProjectName" class="browser-default">
+                    <option selected *ngFor="let project of projects">{{ project.name }}</option>
+                </select>
+            </div>
+
+            <div class="timer__info">
+                <p class="timer__info__time"><i class="material-icons left" style="padding-top: 5px;">access_time</i>{{ time | date:'mm:ss'}}</p>
+                <button *ngIf="!timerIsRunning" (click)="startTimer()" class="btn-green btn waves-effect waves-light">START</button>
+                <button *ngIf="timerIsRunning" (click)="stopTimer()" class="btn-red btn waves-effect waves-light">STOP</button>
+            </div>
         </div>
     </div>
-    <div class="timer-time-info">
-        <svg class="timer-time-info__icon">
-            <use xlink:href="../assets/sprite.svg#icon-clock"></use>
-        </svg>
-        <p class="timer-time-info__time">{{ time | date:'mm:ss'}}</p>
-        <button *ngIf="!timerIsRunning" (click)="startTimer()" class="button button-green">START</button>
-        <button *ngIf="timerIsRunning" (click)="stopTimer()" class="button button-yellow">STOP</button>
-        <svg class="timer-time-info__icon-trash">
-            <use xlink:href="../assets/sprite.svg#icon-trash"></use>
-        </svg>
+</div>
+
+<div class="row">
+    <div class="col s12 activity-heading">
+        <h4>Latest Activity</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <table class="activity-table">
+            <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Hours</th>
+                  <th>Client</th>
+              </tr>
+            </thead>
+        
+            <tbody>
+                <tr class="activity-table__item" routerLink="{{project.id}}" *ngFor="let project of projects">
+                    <td>{{ project.name }}</td>
+                    <td>{{project.description}}</td>
+                    <td>32</td>
+                    <td>Pera Peric</td>
+                </tr>
+            </tbody>
+          </table>
     </div>
 </div>

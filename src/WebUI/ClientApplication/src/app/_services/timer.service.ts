@@ -12,6 +12,14 @@ export class TimerService {
     localStorage.setItem('timerIsRunning', 'TRUE');
   }
 
+  setTimedProject(projectName) {
+    localStorage.setItem('timedProject', projectName);
+  }
+
+  getTimedProject() {
+    return localStorage.getItem('timedProject');
+  }
+
   isTimerRunning(): boolean {
     if (localStorage.getItem('timerIsRunning') === 'TRUE') {
       return true;

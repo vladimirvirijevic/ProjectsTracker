@@ -8,12 +8,13 @@ import { Project } from '../_models';
   styles: []
 })
 export class TimerComponent implements OnInit {
-  time: number;
+  time: number = 0;
   startTime: number;
   timer: any;
   selectedProjectName: string;
   projects: Project[];
   timerIsRunning = false;
+  currentProject: Project;
 
   constructor(
     private timerService: TimerService,
@@ -28,13 +29,17 @@ export class TimerComponent implements OnInit {
 
   ngOnInit() {
     this.timerIsRunning = this.timerService.isTimerRunning();
+
     this.getProjects();
+  }
+
+  onChange(projectName) {
+    this.timerService.setTimedProject(projectName);
   }
 
   displayTime() {
     this.timer = setInterval(() => {
       this.time = Date.now() - this.startTime;
-      console.log(this.time);
     }, 1000);
   }
     
@@ -42,6 +47,11 @@ export class TimerComponent implements OnInit {
     if (this.timerService.isTimerRunning()) {
       return;
     }
+
+    if (!this.selectedProjectName) {
+      return;
+    }
+
     this.timerIsRunning = true;
     this.startTime = Date.now();
     this.timerService.startTimer(this.startTime);
@@ -62,7 +72,12 @@ export class TimerComponent implements OnInit {
           this.projects = data;
           // set default selected project name to first project
           if (this.projects) {
-            this.selectedProjectName = this.projects[0].name;
+            if (this.timerService.getTimedProject) {
+              this.selectedProjectName = this.timerService.getTimedProject();
+            }
+            else {
+              this.selectedProjectName = this.projects[0].name;
+            } 
           }
         }
       );
