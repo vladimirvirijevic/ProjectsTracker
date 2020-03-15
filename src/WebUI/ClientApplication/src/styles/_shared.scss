@@ -1,67 +1,27 @@
-.button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    font-weight: 700;
-    font-size: 1.5rem;
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: .5rem;
-    border: none;
+.btn-purple {
+    background-color: var(--color-purple-dark) !important;
 }
 
-.button-green {
-    color: #fff;
-    background: var(--color-green);
+.btn-red {
+    background-color: var(--color-red-dark) !important;
 
     &:hover {
-        background: var(--color-green-dark);
+        background-color: var(--color-red-light) !important;
     }
 }
 
-.button-blue {
-    color: #fff;
-    background: var(--color-blue-main);
+.btn-blue {
+    background-color: var(--color-blue-dark) !important;
+}
+
+.btn-grey {
+    background-color: var(--color-grey-dark) !important;
+}
+
+.btn-green {
+    background-color: var(--color-green-dark) !important;
 
     &:hover {
-        background: var(--color-blue-main-darker);
+        background-color: var(--color-green-light) !important;
     }
 }
-
-.button-yellow {
-    color: #fff;
-    background: var(--color-yellow);
-
-    &:hover {
-        background: var(--color-yellow-dark);
-    }
-}
-
-.button-red {
-    color: #fff;
-    background: var(--color-red);
-
-    &:hover {
-        background: var(--color-red-dark);
-    }
-}
-
-.red-icon {
-    fill: var(--color-red);
-}
-
-.yellow-icon {
-    fill: var(--color-yellow);
-}
-
-.green-icon {
-    fill: var(--color-green);
-}
-
-.blue-icon {
-    fill: var(--color-blue-main-darker);
-}
-
-textarea {
-    font-family: inherit;
-    font-size: inherit;
- }

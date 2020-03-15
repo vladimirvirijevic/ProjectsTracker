@@ -1,55 +1,71 @@
-<div class="project-header">
+<div class="section__title">
     <h1>My Projects</h1>
 </div>
-<a (click)="openModal('create-project-modal')" class="button button-green create-new-project-btn">CREATE NEW</a>
-<div class="project-list">
-    <div class="project-list-heading">
-        <p>Name</p>
-        <p>Description</p>
-        <p>Hours</p>
-        <p>Client</p>
-    </div>
+<a  (click)="openModal('create-project-modal')" class="btn-green btn waves-effect waves-light"><i class="material-icons right">add</i>CREATE NEW</a>
 
-    <div routerLink="{{project.id}}" *ngFor="let project of projects" class="project-item">
-        <p>{{project.name}}</p>
-        <p>{{project.description}}</p>
-        <p>32</p>
-        <p>TestClient1</p>
-    </div>
-</div>
+<table class="project-table">
+    <thead>
+      <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Hours</th>
+          <th>Client</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <tr class="project-table__item" routerLink="{{project.id}}" *ngFor="let project of projects">
+            <td>{{ project.name }}</td>
+            <td>{{project.description}}</td>
+            <td>32</td>
+            <td>Pera Peric</td>
+        </tr>
+    </tbody>
+  </table>
 
 <jw-modal id="create-project-modal">
     <form class="create-project-form" [formGroup]="createProjectForm" (ngSubmit)="onSubmit()">
-        <h1 class="create-project-form__heading">Create New Project</h1>
-        <div class="create-project-form__field">
-            <input 
+        <div class="row">
+            <div class="col s12">
+                <h4>Create New Project</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+              <input 
                 formControlName="name"
                 required
-                placeholder="Project Name"
-                class="create-project-form__input" 
-                type="text">
-            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid">
+                type="text" 
+                class="validate"
+                [ngClass]="{ 'is-invalid': submitted && description.errors }" type="text"
+                >
+              <label for="name">Project Name</label>
+              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid">
                 <div *ngIf="name.errors.required">
                     Project Name is required.
                 </div>
             </div>
-            
+            </div>
         </div>
-        <div class="create-project-form__field">
-            <textarea rows="6"
+        <div class="row">
+            <div class="input-field col s12">
+              <input 
                 formControlName="description" 
                 required 
-                class="create-project-form__input textarea_input"
-                [ngClass]="{ 'is-invalid': submitted && description.errors }" type="text" 
-                placeholder="Description">
-            </textarea>
-            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="invalid">
+                type="text" 
+                class="validate"
+                [ngClass]="{ 'is-invalid': submitted && description.errors }" type="text"
+                >
+              <label for="name">Project Description</label>
+              <div *ngIf="description.invalid && (description.dirty || description.touched)" class="invalid">
                 <div *ngIf="description.errors.required">
                     Description is required.
                 </div>
+              </div>
             </div>
         </div>
-        <button (click)="closeModal('create-project-modal')" type="submit" class="button button-green create-task-form__btn">+ Add</button>
-        <button type="button" class="button button-red create-task-form__btn-close" (click)="closeModal('create-project-modal')">X Close</button>
+        
+        <button (click)="closeModal('create-project-modal')" type="submit" class="create-project-btn btn-blue btn waves-effect waves-light"><i class="material-icons right">add</i>Add</button>
+        <button type="button" class="btn-red btn waves-effect waves-light" (click)="closeModal('create-project-modal')"><i class="material-icons right">clear</i>Close</button>
     </form>
 </jw-modal>

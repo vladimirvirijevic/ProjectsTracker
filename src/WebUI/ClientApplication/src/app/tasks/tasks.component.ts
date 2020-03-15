@@ -5,6 +5,8 @@ import { ProjectService, AuthenticationService } from '../_services';
 import { Project, Task } from '../_models';
 import { TasksService } from '../_services/tasks.service';
 
+declare var $:any;
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -28,8 +30,15 @@ export class TasksComponent implements OnInit {
     private taskService: TasksService
   ) { }
 
+  initializeSelect() {
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+  }
+
   ngOnInit() {
     this.getProjects();
+    //this.initializeSelect();
     
     if (this.projectService.getCurrentProject) {
       this.selectedProject = this.projectService.getCurrentProject;

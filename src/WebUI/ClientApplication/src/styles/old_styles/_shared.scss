@@ -1,0 +1,71 @@
+.button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: .5rem;
+    border: none;
+}
+
+.button-green {
+    color: #fff;
+    background: var(--color-green);
+
+    &:hover {
+        background: var(--color-green-dark);
+    }
+}
+
+.button-blue {
+    color: #fff;
+    background: var(--color-blue-main);
+
+    &:hover {
+        background: var(--color-blue-main-darker);
+    }
+}
+
+.button-yellow {
+    color: #fff;
+    background: var(--color-yellow);
+
+    &:hover {
+        background: var(--color-yellow-dark);
+    }
+}
+
+.button-red {
+    color: #fff;
+    background: var(--color-red);
+
+    &:hover {
+        background: var(--color-red-dark);
+    }
+}
+
+.red-icon {
+    fill: var(--color-red);
+}
+
+.yellow-icon {
+    fill: var(--color-yellow);
+}
+
+.green-icon {
+    fill: var(--color-green);
+}
+
+.blue-icon {
+    fill: var(--color-blue-main-darker);
+}
+
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+ }
+
+.btn-purple {
+    background-color: #5E35B1 !important;
+}

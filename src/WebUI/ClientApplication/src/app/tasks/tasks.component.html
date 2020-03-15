@@ -1,81 +1,87 @@
-<div class="section-header">
-    <h1>Tasks</h1>
-
-    
+<div class="row section__title">
+    <div class="col s12">
+        <h1>Tasks <span *ngIf="projectIsSelected">- {{ selectedProject.name }}</span></h1>
+    </div>
 </div>
 
-<div *ngIf="!projectIsSelected" class="project-choice">
-    <h4 class="project-choice__text">Please choose project</h4>
-    <select [(ngModel)]="selectedProjectName" class="project-choice__select">
-        <option selected *ngFor="let project of projects">{{ project.name }}</option>
-    </select>
-    <a (click)="selectProject()" class="button button-blue project-choice__btn">Select project</a>
+<div *ngIf="!projectIsSelected" class="row project-choice">
+    <div class="col s12">
+        <h5 class="project-choice__text">Please choose project</h5>
+        <select [(ngModel)]="selectedProjectName" class="browser-default">
+            <option selected *ngFor="let project of projects">{{ project.name }}</option>
+        </select>
+        <a (click)="selectProject()" class="project-choice__btn btn-blue btn waves-effect waves-light"><i class="material-icons right">arrow_forward</i>Select project</a>
+    </div>
 </div>
 
-<div *ngIf="projectIsSelected" class="tasks-wrapper">
-    <h4 class="tasks__current-text">Current project: {{ selectedProject.name }}</h4>
-    <a (click)="openModal('create-task-modal')" class="create-task-btn">Add New Task</a>
-    <a (click)="changeProject()" class="button button-yellow project-choice__btn">Change Project</a>
-    <div class="tasks">
+
+<div *ngIf="projectIsSelected" class="row">
+    <div class="col s12 task-buttons">
+        <a (click)="openModal('create-task-modal')" class="btn-green btn waves-effect waves-light"><i class="material-icons right">add</i>Add New Task</a>
+        <a (click)="changeProject()" class="task-buttons__btn btn-red btn waves-effect waves-light"><i class="material-icons right">clear</i>Change Project</a>
+    </div>
+
+    <div class="col s12">
+        <div class="tasks">
     
-        <div class="task-category">
-            <div class="task-category__heading">
-                <h4>Todo</h4>
-            </div>
-            <div class="task-category__body">
-                <div *ngFor="let task of todoTasks" class="task-item">
-                    <p class="task-item__title">{{ task.name }}</p>
-                    <div class="task-item__icons">
-                        <svg (click)="changeTaskStatus('WORKING', task.id)" class="task-item__icon blue-icon">
-                            <use xlink:href="../assets/sprite.svg#icon-briefcase"></use>
-                        </svg>
-                        <svg (click)="changeTaskStatus('DONE', task.id)" class="task-item__icon green-icon">
-                            <use xlink:href="../assets/sprite.svg#icon-checkmark"></use>
-                        </svg>
-                        <svg (click)="deleteTask(task.id)" class="task-item__icon red-icon">
-                            <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
-                        </svg>
+            <div class="task-category">
+                <div class="task-category__heading">
+                    <h4>Todo</h4>
+                </div>
+                <div class="task-category__body">
+                    <div *ngFor="let task of todoTasks" class="task-item">
+                        <p class="task-item__title">{{ task.name }}</p>
+                        <div class="task-item__icons">
+                            <svg (click)="changeTaskStatus('WORKING', task.id)" class="task-item__icon blue-icon">
+                                <use xlink:href="../assets/sprite.svg#icon-briefcase"></use>
+                            </svg>
+                            <svg (click)="changeTaskStatus('DONE', task.id)" class="task-item__icon green-icon">
+                                <use xlink:href="../assets/sprite.svg#icon-checkmark"></use>
+                            </svg>
+                            <svg (click)="deleteTask(task.id)" class="task-item__icon red-icon">
+                                <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    
-        <div class="task-category">
-            <div class="task-category__heading">
-                <h4>Doing</h4>
-            </div>
-            <div class="task-category__body">
-                <div *ngFor="let task of workingTasks" class="task-item">
-                    <p class="task-item__title">{{ task.name }}</p>
-                    <div class="task-item__icons">
-                        <svg (click)="changeTaskStatus('DONE', task.id)" class="task-item__icon green-icon">
-                            <use xlink:href="../assets/sprite.svg#icon-checkmark"></use>
-                        </svg>
-                        <svg (click)="deleteTask(task.id)" class="task-item__icon red-icon">
-                            <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
-                        </svg>
+        
+            <div class="task-category">
+                <div class="task-category__heading">
+                    <h4>Doing</h4>
+                </div>
+                <div class="task-category__body">
+                    <div *ngFor="let task of workingTasks" class="task-item">
+                        <p class="task-item__title">{{ task.name }}</p>
+                        <div class="task-item__icons">
+                            <svg (click)="changeTaskStatus('DONE', task.id)" class="task-item__icon green-icon">
+                                <use xlink:href="../assets/sprite.svg#icon-checkmark"></use>
+                            </svg>
+                            <svg (click)="deleteTask(task.id)" class="task-item__icon red-icon">
+                                <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    
-        <div class="task-category">
-            <div class="task-category__heading">
-                <h4>Done</h4>
-            </div>
-            <div class="task-category__body">
-                <div *ngFor="let task of doneTasks" class="task-item">
-                    <p class="task-item__title">{{ task.name }}</p>
-                    <div class="task-item__icons">
-                        <svg (click)="deleteTask(task.id)" class="task-item__icon red-icon">
-                            <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
-                        </svg>
+        
+            <div class="task-category">
+                <div class="task-category__heading">
+                    <h4>Done</h4>
+                </div>
+                <div class="task-category__body">
+                    <div *ngFor="let task of doneTasks" class="task-item">
+                        <p class="task-item__title">{{ task.name }}</p>
+                        <div class="task-item__icons">
+                            <svg (click)="deleteTask(task.id)" class="task-item__icon red-icon">
+                                <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 <jw-modal id="create-task-modal">

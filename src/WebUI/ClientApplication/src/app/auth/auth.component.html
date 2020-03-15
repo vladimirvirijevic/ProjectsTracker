@@ -1,114 +1,124 @@
 <div class="auth-wrapper">
-    <div class="auth">
-        <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="auth-form">
-            <div class="auth-form__heading">
-                <svg class="auth-form__heading__icon">
-                    <use xlink:href="../assets/sprite.svg#icon-clock"></use>
-                </svg>
+    <div class="row auth-form">
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="col s12">
+        <div class="row">
+            <div class="col s12">
                 <h1>Project Tracker</h1>
                 <h4>{{ title }}</h4>
             </div>
-            
-            <div class="auth-form__field">
-                <input 
-                    formControlName="username"
-                    required
-                    minlength="3"
-                    class="auth-form__input" 
-                    [ngClass]="{ 'is-invalid': submitted && username.errors }" 
-                    type="text" 
-                    placeholder="Username"
-                    >
-                <svg class="auth-form__icon">
-                    <use xlink:href="../assets/sprite.svg#icon-user"></use>
-                </svg>
-            </div>
-            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="invalid">
-                <div *ngIf="username.errors.required">
-                    Username is required.
-                </div>
-                <div *ngIf="username.errors.minlength">
-                   Username must be at least 3 characters long.
-                </div>
-            </div>
-
-            <div class="auth-form__field">
-                <input *ngIf="authType == 'register'" formControlName="firstName" required class="auth-form__input"
-                    [ngClass]="{ 'is-invalid': submitted && firstName.errors }" type="text" placeholder="First Name">
-                <svg class="auth-form__icon">
-                    <use xlink:href="../assets/sprite.svg#icon-user"></use>
-                </svg>
-            </div>
-            <div *ngIf="authType == 'register' && firstName.invalid && (firstName.dirty || firstName.touched)" class="invalid">
+        </div>
+    
+        <div  *ngIf="authType == 'register'" class="row ">
+            <div class="input-field col s6">
+              <input 
+                *ngIf="authType == 'register'" 
+                formControlName="firstName" 
+                required id="first_name" 
+                type="text" 
+                class="validate"
+                [ngClass]="{ 'is-invalid': submitted && firstName.errors }">
+              <label for="first_name">First Name</label>
+              <div *ngIf="authType == 'register' && firstName.invalid && (firstName.dirty || firstName.touched)" class="invalid">
                 <div *ngIf="firstName.errors.required">
                     First Name is required.
                 </div>
+                </div>
             </div>
-
-            <div class="auth-form__field">
-                <input *ngIf="authType == 'register'" formControlName="lastName" required class="auth-form__input"
-                    [ngClass]="{ 'is-invalid': submitted && lastName.errors }" type="text" placeholder="Last Name">
-                <svg class="auth-form__icon">
-                    <use xlink:href="../assets/sprite.svg#icon-user"></use>
-                </svg>
-            </div>
-            <div *ngIf="authType == 'register' && lastName.invalid && (lastName.dirty || lastName.touched)" class="invalid">
+            <div class="input-field col s6">
+              <input 
+                *ngIf="authType == 'register'" 
+                formControlName="lastName" 
+                required 
+                id="last_name" 
+                type="text" 
+                class="validate"
+                [ngClass]="{ 'is-invalid': submitted && lastName.errors }">
+              <label for="last_name">Last Name</label>
+              <div *ngIf="authType == 'register' && lastName.invalid && (lastName.dirty || lastName.touched)" class="invalid">
                 <div *ngIf="lastName.errors.required">
                     Last Name is required.
                 </div>
+              </div>
             </div>
-
-            <div class="auth-form__field">
+          </div>
+    
+        <div *ngIf="authType == 'register'" class="row">
+            <div class="input-field col s12">
                 <input 
+                    id="email" 
+                    type="email" 
+                    class="validate"
                     *ngIf="authType == 'register'"
                     formControlName="email"
                     required
                     email
-                    class="auth-form__input" 
-                    [ngClass]="{ 'is-invalid': submitted && email.errors }"
-                    type="email" 
-                    placeholder="Email" 
-                    >
-                <svg class="auth-form__icon">
-                    <use xlink:href="../assets/sprite.svg#icon-envelope"></use>
-                </svg>
-            </div>
-            <div *ngIf="authType == 'register' && email.invalid && (email.dirty || email.touched)" class="invalid">
-                <div *ngIf="email.errors.required">
-                    Email is required.
-                </div>
-                <div *ngIf="email.errors.email">
-                    Imvalid email address.
+                    [ngClass]="{ 'is-invalid': submitted && email.errors }">
+                <label for="email">Email</label>
+                <div *ngIf="authType == 'register' && email.invalid && (email.dirty || email.touched)" class="invalid">
+                    <div *ngIf="email.errors.required">
+                        Email is required.
+                    </div>
+                    <div *ngIf="email.errors.email">
+                        Imvalid email address.
+                    </div>
                 </div>
             </div>
-
-            <div class="auth-form__field">
+        </div>
+    
+        <div class="row">
+            <div class="input-field col s12">
                 <input 
+                    id="username" 
+                    type="text" 
+                    class="validate"
+                    formControlName="username"
+                    required
+                    minlength="3"
+                    [ngClass]="{ 'is-invalid': submitted && username.errors }" >
+                <label for="username">Username</label>
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="invalid">
+                    <div *ngIf="username.errors.required">
+                        Username is required.
+                    </div>
+                    <div *ngIf="username.errors.minlength">
+                       Username must be at least 3 characters long.
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="row">
+            <div class="input-field col s12">
+                <input 
+                    id="password" 
+                    type="password" 
+                    class="validate"
                     formControlName="password"
                     required
                     minlength="6"
-                    class="auth-form__input" 
-                    [ngClass]="{ 'is-invalid': submitted && password.errors }"
-                    type="password" 
-                    placeholder="Password">
-                <svg class="auth-form__icon">
-                    <use xlink:href="../assets/sprite.svg#icon-key"></use>
-                </svg>
-            </div> 
-            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid">
-                <div *ngIf="password.errors.required">
-                    Password is required.
-                </div>
-                <div *ngIf="password.errors.minlength">
-                    Password must be at least 6 characters long.
+                    [ngClass]="{ 'is-invalid': submitted && password.errors }">
+                <label for="password">Password</label>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid">
+                    <div *ngIf="password.errors.required">
+                        Password is required.
+                    </div>
+                    <div *ngIf="password.errors.minlength">
+                        Password must be at least 6 characters long.
+                    </div>
                 </div>
             </div>
-
-            <button type="submit" class="auth-form__button">Sign in</button>
-        </form>
-    
-        <div class="auth-bottom-text">
-            <p>{{ bottomTextDescription }} <a class="auth-bottom-text__link" routerLink='/{{bottomTextPath}}'>{{ bottomTextLink }}</a></p>
         </div>
-    </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn-blue waves-effect waves-light btn-large">Sign in</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>{{ bottomTextDescription }} <a class="auth-bottom-text__link" routerLink='/{{bottomTextPath}}'>{{ bottomTextLink }}</a></p>
+            </div>
+        </div>
+        </form>
+      </div>
+    
 </div>

@@ -1,0 +1,123 @@
+.wrapper {
+
+}
+
+.auth-wrapper {
+    @media only screen and (max-width: 600px) {
+        padding: 6rem 1.5rem;
+    }
+
+    background: rgb(55,150,131);
+    background: linear-gradient(79deg, rgba(55,150,131,1) 0%, rgba(142,228,175,1) 61%);
+    min-height: 100vh;
+    padding: 15rem 0;
+}
+
+.auth {
+    @media only screen and (max-width: 600px) {
+        width: 40rem;
+        padding: 1.5rem 3rem 1rem 3rem;
+        height: 55rem;
+    }
+
+    font-size: 1.4rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50rem;
+    padding: 3rem 6rem 2rem 6rem;
+    text-align: center;
+    box-shadow: var(--shadow-dark);
+    border-radius: 1rem;
+    background: #fff;
+}
+
+//////////////////////
+///// HOME LAYOUT
+
+.home-wrapper {
+    height: 100vh;
+}
+
+.navbar {
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    background-color: var(--color-blue-main);
+}
+
+.main-content {
+    padding-left: 250px;
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-grey-background);
+}
+
+.section-wrapper {
+    padding: 5rem;
+}
+
+.timer {
+    background: #fff;
+    box-shadow: var(--shadow-dark);
+    padding: 2rem 8rem;
+    border-radius: .5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+//////////////////////
+///// PROJECTS LAYOUT
+
+.project-list {
+    margin-top: 3rem;
+    box-shadow: var(--shadow-dark);
+    border-radius: 1rem;
+}
+
+.project-item {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 2rem;
+    font-size: 1.6rem;
+    border-bottom: 1px solid rgb(202, 202, 202);
+}
+
+.project-list-heading {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 2rem;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+
+////////////////////////////////
+///// SHARED LAYOUT
+.section-header {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+}
+
+////////////////////
+///// Tasks
+.tasks {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+    align-items: start;
+    
+    &__current-text {
+        font-size: 1.7rem;
+        margin: 2rem 0;
+    }
+}

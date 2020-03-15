@@ -1,42 +1,28 @@
 <div class="home-wrapper">
     <nav class="navbar">
         <div class="navbar-brand">
-            <svg class="navbar-brand__icon">
-                <use xlink:href="../assets/sprite.svg#icon-clock"></use>
-            </svg>
-            <h1 class="navbar-brand__title">Project Tracker</h1>
+            <h1 class="navbar-brand__title"><i class="material-icons navbar-brand__icon">access_time</i>Project Tracker</h1>
         </div>
         <ul class="navbar-menu">
             <li class="navbar-menu__item">
+                
                 <a [routerLink]="['/app/timer']" routerLinkActive="navbar-menu__active" class="navbar-menu__link">
-                    <svg class="navbar-menu__icon">
-                        <use xlink:href="../assets/sprite.svg#icon-home"></use>
-                    </svg>
-                    Timer
+                    <i class="material-icons navbar-menu__item__icon">add_alarm</i> Timer
                 </a>
             </li>
             <li class="navbar-menu__item">
                 <a [routerLink]="['/app/projects']" routerLinkActive="navbar-menu__active" class="navbar-menu__link">
-                    <svg class="navbar-menu__icon">
-                        <use xlink:href="../assets/sprite.svg#icon-chat"></use>
-                    </svg>
-                    Projects
+                    <i class="material-icons navbar-menu__item__icon">assignment</i>Projects
                 </a>
             </li>
             <li class="navbar-menu__item">
                 <a [routerLink]="['/app/tasks']" routerLinkActive="navbar-menu__active" class="navbar-menu__link">
-                    <svg class="navbar-menu__icon">
-                        <use xlink:href="../assets/sprite.svg#icon-map"></use>
-                    </svg>
-                    Tasks
+                    <i class="material-icons navbar-menu__item__icon">event_available</i>Tasks
                 </a>
             </li>
             <li class="navbar-menu__item">
                 <a href="#" class="navbar-menu__link">
-                    <svg class="navbar-menu__icon">
-                        <use xlink:href="../assets/sprite.svg#icon-location-pin"></use>
-                    </svg>
-                    Settings
+                    <i class="material-icons navbar-menu__item__icon">perm_data_setting</i>Settings
                 </a>
             </li>
         </ul>
@@ -48,7 +34,7 @@
                 <p class="top-info-user__username">{{ username }}</p>
             </div>
         </div>
-        <div class="section-wrapper">
+        <div class="section">
             <router-outlet></router-outlet>
         </div>
     </main>

@@ -1,4 +1,5 @@
 :root {
+    /*
     --color-green: rgb(48, 199, 116);
     --color-green-light: #8EE4AF;
     --color-green-dark: rgb(35, 185, 103);
@@ -25,6 +26,27 @@
 
     --color-yellow: rgb(238, 241, 22);
     --color-yellow-dark: rgb(213, 216, 19);
+
+    --color-orange-dark: #ED7458;
+    */
+
+    // Compote Design 
+    // https://www.shutterstock.com/blog/10-gorgeous-color-schemes-for-websites?kw=&gclsrc=aw.ds&gclid=CjwKCAjwgbLzBRBsEiwAXVIygNzHST_saVz4_DLjSrjse0fBjFiwuyW8ZHsqf0Pzs9SEd8XoUwlG_BoCbdIQAvD_BwE
+    --color-red-dark: #F64C72 ;
+    --color-red-light: rgb(253, 87, 123) ;
+    
+    --color-blue-dark: #4066d4;
+    --color-purple-dark: #C2B4D6 ;
+    --color-grey-dark: #E5E5E5;
+
+    --color-green-dark: #14A76C;
+    --color-green-light: rgb(26, 202, 132);
+
+    --color-red-darker: rgb(121, 61, 78) ;
+    --color-blue-darker: #365ac4;
+
+    --color-grey-font: rgb(107, 107, 107);
+    --color-grey-background: #f8f9fc;
 }
 
 
@@ -41,13 +63,22 @@
  
 html {
     box-sizing: border-box;
-    font-size: 62.5%; 
+    
 }
 
 body {
-    font-family: 'Muli', sans-serif;
     font-weight: 400;
     line-height: 1.6;
-    color: var(--color-grey-dark-1);
+    color: var(--color-grey-font);
+}
+
+html, body, div, h1, h2, h3, h4, h5 {
+    padding: 0; 
+    border: 0;
+    margin: 0;
+}
+
+h4 {
+    font-size: 20px;
 }
 
