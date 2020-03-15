@@ -147,3 +147,50 @@
         margin: 0 0 0 20px;
     }
 }
+
+.kanban {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    &__board {
+        width: 300px;
+        
+        &__title {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+    }
+
+    &__task {
+        cursor: pointer;
+    }
+}
+
+.tasks {
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+
+    &__board {
+        padding: 20px;
+        width: 350px;
+
+        &__title {
+            text-align: center;
+           font-size: 25px;
+           font-weight: bold;
+        }
+    }
+
+    &__item {
+        padding: 20px;
+        margin: 20px 0;
+        cursor: pointer;
+
+        &__icon {
+            cursor: pointer;
+        }
+    }
+}

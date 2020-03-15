@@ -20,64 +20,41 @@
         <a (click)="openModal('create-task-modal')" class="btn-green btn waves-effect waves-light"><i class="material-icons right">add</i>Add New Task</a>
         <a (click)="changeProject()" class="task-buttons__btn btn-red btn waves-effect waves-light"><i class="material-icons right">clear</i>Change Project</a>
     </div>
+</div>
 
+<div *ngIf="projectIsSelected" class="row" cdkDropListGroup>
     <div class="col s12">
         <div class="tasks">
-    
-            <div class="task-category">
-                <div class="task-category__heading">
-                    <h4>Todo</h4>
-                </div>
-                <div class="task-category__body">
-                    <div *ngFor="let task of todoTasks" class="task-item">
-                        <p class="task-item__title">{{ task.name }}</p>
-                        <div class="task-item__icons">
-                            <svg (click)="changeTaskStatus('WORKING', task.id)" class="task-item__icon blue-icon">
-                                <use xlink:href="../assets/sprite.svg#icon-briefcase"></use>
-                            </svg>
-                            <svg (click)="changeTaskStatus('DONE', task.id)" class="task-item__icon green-icon">
-                                <use xlink:href="../assets/sprite.svg#icon-checkmark"></use>
-                            </svg>
-                            <svg (click)="deleteTask(task.id)" class="task-item__icon red-icon">
-                                <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
-                            </svg>
-                        </div>
-                    </div>
+            <div 
+                class="tasks__board blue-grey darken-1 text-white"
+                cdkDropList
+                [cdkDropListData]="todo"
+                (cdkDropListDropped)="drop($event, 'TODO')">
+                <h4 class="tasks__board__title">To Do</h4>
+                <div class="tasks__item blue" *ngFor="let task of todo" cdkDrag>
+                    <p>{{task.name}}<i (click)="deleteTask(task.id)" class="tasks__item__icon material-icons right">clear</i></p>
                 </div>
             </div>
-        
-            <div class="task-category">
-                <div class="task-category__heading">
-                    <h4>Doing</h4>
-                </div>
-                <div class="task-category__body">
-                    <div *ngFor="let task of workingTasks" class="task-item">
-                        <p class="task-item__title">{{ task.name }}</p>
-                        <div class="task-item__icons">
-                            <svg (click)="changeTaskStatus('DONE', task.id)" class="task-item__icon green-icon">
-                                <use xlink:href="../assets/sprite.svg#icon-checkmark"></use>
-                            </svg>
-                            <svg (click)="deleteTask(task.id)" class="task-item__icon red-icon">
-                                <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
-                            </svg>
-                        </div>
-                    </div>
+
+            <div 
+                class="tasks__board blue-grey darken-1 text-white"
+                cdkDropList
+                [cdkDropListData]="doing"
+                (cdkDropListDropped)="drop($event, 'DOING')">
+                <h4 class="tasks__board__title">Doing</h4>
+                <div class="tasks__item blue" *ngFor="let task of doing" cdkDrag>
+                    <p>{{task.name}}<i (click)="deleteTask(task.id)" class="tasks__item__icon material-icons right">clear</i></p>
                 </div>
             </div>
-        
-            <div class="task-category">
-                <div class="task-category__heading">
-                    <h4>Done</h4>
-                </div>
-                <div class="task-category__body">
-                    <div *ngFor="let task of doneTasks" class="task-item">
-                        <p class="task-item__title">{{ task.name }}</p>
-                        <div class="task-item__icons">
-                            <svg (click)="deleteTask(task.id)" class="task-item__icon red-icon">
-                                <use xlink:href="../assets/sprite.svg#icon-cancel"></use>
-                            </svg>
-                        </div>
-                    </div>
+
+            <div 
+                class="tasks__board blue-grey darken-1 text-white"
+                cdkDropList
+                [cdkDropListData]="done"
+                (cdkDropListDropped)="drop($event, 'DONE')">
+                <h4 class="tasks__board__title">Done</h4>
+                <div class="tasks__item blue" *ngFor="let task of done" cdkDrag>
+                    <p>{{task.name}}<i (click)="deleteTask(task.id)" class="tasks__item__icon material-icons right">clear</i></p>
                 </div>
             </div>
         </div>
@@ -86,22 +63,34 @@
 
 <jw-modal id="create-task-modal">
     <form class="create-task-form" [formGroup]="createTaskForm" (ngSubmit)="onSubmit()">
-        <h1 class="create-task-form__heading">Create New Task</h1>
-        <div class="create-task-form__field">
-            <input 
-                formControlName="taskName"
-                required
-                placeholder="Task Name"
-                class="create-task-form__input" 
-                type="text">
-            <div *ngIf="taskName.invalid && (taskName.dirty || taskName.touched)" class="invalid">
-                <div *ngIf="taskName.errors.required">
-                    Task Name is required.
-                </div>
-            </div>
-            <button type="submit" class="button button-green create-task-form__btn">+ Add</button>
-            <button type="button" class="button button-red create-task-form__btn-close" (click)="closeModal('create-task-modal')">X Close</button>
+    <div class="row">
+        <div class="col s12">
+            <h4>Create New Task</h4>
         </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+          <input 
+            formControlName="taskName"
+            required
+            type="text" 
+            class="validate"
+            [ngClass]="{ 'is-invalid': submitted && description.errors }" type="text"
+            >
+          <label for="name">Task Name</label>
+          <div *ngIf="taskName.invalid && (taskName.dirty || taskName.touched)" class="invalid">
+            <div *ngIf="taskName.errors.required">
+                Task Name is required.
+            </div>
+          </div>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <button type="submit"  class="create-project-btn btn-blue btn waves-effect waves-light"><i class="material-icons right">add</i>Add</button>
+            <button type="button" class="btn-red btn waves-effect waves-light" (click)="closeModal('create-task-modal')"><i class="material-icons right">clear</i>Close</button>
+        </div>
+    </div>
     </form>
 </jw-modal>
 

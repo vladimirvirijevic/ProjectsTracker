@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ModalService } from '../_modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProjectService, AuthenticationService } from '../_services';
@@ -34,6 +35,26 @@ export class TasksComponent implements OnInit {
     $(document).ready(function(){
       $('select').formSelect();
     });
+  }
+
+  todo = [];
+
+  doing = [];
+
+  done = [];
+
+  drop(event: CdkDragDrop<string[]>, board: string) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+
+    const selectedTask = event.container.data[event.currentIndex];
+    this.changeTaskStatus(board, selectedTask.id);
   }
 
   ngOnInit() {
@@ -100,7 +121,6 @@ export class TasksComponent implements OnInit {
 
     this.projectIsSelected = true;
     this.selectedProject = this.projects.filter(x => x.name === this.selectedProjectName)[0];
-    console.log(this.selectedProjectName);
 
     if (this.selectedProject) {
       this.projectService.setCurrentProject(this.selectedProject);
@@ -134,7 +154,6 @@ export class TasksComponent implements OnInit {
     this.taskService.getAll(this.selectedProject.id)
       .subscribe(
         data => {
-          console.log(data);
           this.setTasks(data);
         }
       );
@@ -148,8 +167,8 @@ export class TasksComponent implements OnInit {
   }
 
   setTasks(data) {
-    this.todoTasks = data.result.filter(x => x.status === 'TODO');
-    this.workingTasks = data.result.filter(x => x.status === 'WORKING');
-    this.doneTasks = data.result.filter(x => x.status === 'DONE');
+    this.todo = data.result.filter(x => x.status === 'TODO');
+    this.doing = data.result.filter(x => x.status === 'DOING');
+    this.done = data.result.filter(x => x.status === 'DONE');
   }
 }

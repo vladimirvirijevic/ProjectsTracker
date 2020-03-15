@@ -16,6 +16,7 @@ import { ProjectDetailComponent } from './projects/project-detail/project-detail
 import { TasksComponent } from './tasks/tasks.component';
 import { ModalModule } from './_modal';
 import { FormsModule } from '@angular/forms';
+import { DragDropModule  } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     HttpClientModule,
     ModalModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
