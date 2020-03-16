@@ -1,4 +1,5 @@
 ﻿using Application.Timers.Commands;
+using Application.Timers.Commands.DeleteActivity;
 using Application.Timers.Commands.StopTimer;
 using Application.Timers.Queries.GetAllActivities;
 using MediatR;
@@ -57,6 +58,16 @@ namespace WebUI.Controllers
             var result = await _mediator.Send(new GetAllActivitiesQuery() { Username = currentUsername });
 
             return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteActivity([FromRoute] int id)
+        {
+            var currentUsername = _userService.GetCurrentUser(this.User).Username;
+
+            await _mediator.Send(new DeleteActivityCommand { Username = currentUsername, Id = id });
+
+            return NoContent();
         }
     }
 }

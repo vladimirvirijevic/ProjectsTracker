@@ -116,6 +116,10 @@ export class TimerComponent implements OnInit {
   }
 
   deleteActivity(id) {
+    this.timerService.deleteActivity(id)
+      .subscribe(
+        () => this.getActivities()
+      );
   }
 
   getTimeAsString(time) {

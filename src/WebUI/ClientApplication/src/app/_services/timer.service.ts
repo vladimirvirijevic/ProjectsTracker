@@ -56,6 +56,10 @@ export class TimerService {
       );
   }
 
+  deleteActivity(id) {
+    return this.http.delete(`${environment.api_url}/timer/deleteactivity/${id}`);
+  }
+
   getActivites(): Observable<Activity[]> {
     return this.http.get<Activity[]>(`${environment.api_url}/timer/getactivities`);
   }
