@@ -70,6 +70,7 @@ export class TimerComponent implements OnInit {
       .subscribe(
         data => {
           this.projects = data;
+          console.log(this.projects);
           // set default selected project name to first project
           if (this.projects) {
             if (this.timerService.getTimedProject) {

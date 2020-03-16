@@ -14,6 +14,7 @@ namespace Persistence
         public DbSet<TaskItem> Tasks { get; set; }
         public DbSet<TimerInfo> Timers { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Activity> Activities { get; set; }
     }
 }
 

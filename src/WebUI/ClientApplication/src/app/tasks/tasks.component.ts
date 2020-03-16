@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ModalService } from '../_modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ProjectService, AuthenticationService } from '../_services';
+import { ProjectService, AuthenticationService, TimerService } from '../_services';
 import { Project, Task } from '../_models';
 import { TasksService } from '../_services/tasks.service';
+import { Router } from '@angular/router';
 
 declare var $:any;
 
@@ -28,7 +29,9 @@ export class TasksComponent implements OnInit {
     private fb: FormBuilder,
     private projectService: ProjectService,
     private authService: AuthenticationService,
-    private taskService: TasksService
+    private taskService: TasksService,
+    private timerService: TimerService,
+    private router: Router
   ) { }
 
   initializeSelect() {
@@ -134,7 +137,7 @@ export class TasksComponent implements OnInit {
     this.loadTasks();
   }
 
-  changeTaskStatus(changedStatus: string, taskId: number) {
+  changeTaskStatus(changedStatus, taskId) {
     const task = {
       username: this.authService.currentUserValue.username,
       id: taskId,
@@ -170,5 +173,10 @@ export class TasksComponent implements OnInit {
     this.todo = data.result.filter(x => x.status === 'TODO');
     this.doing = data.result.filter(x => x.status === 'DOING');
     this.done = data.result.filter(x => x.status === 'DONE');
+  }
+
+  goToTimer() {
+    this.timerService.setTimedProject(this.selectedProjectName);
+    this.router.navigateByUrl('app/timer');
   }
 }

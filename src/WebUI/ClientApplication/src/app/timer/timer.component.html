@@ -34,19 +34,28 @@
         <table class="activity-table">
             <thead>
               <tr>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Hours</th>
-                  <th>Client</th>
+                  <th>Project Name</th>
+                  <th>Minutes Worked</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Date</th>
               </tr>
             </thead>
         
             <tbody>
-                <tr class="activity-table__item" routerLink="{{project.id}}" *ngFor="let project of projects">
-                    <td>{{ project.name }}</td>
-                    <td>{{project.description}}</td>
-                    <td>32</td>
-                    <td>Pera Peric</td>
+                <tr class="activity-table__item">
+                    <td>Neki Projekat</td>
+                    <td>55</td>
+                    <td>14:24</td>
+                    <td>15:19</td>
+                    <td>17. March 2020.</td>
+                </tr>
+                <tr class="activity-table__item">
+                    <td>Projekat 2</td>
+                    <td>30</td>
+                    <td>10:04</td>
+                    <td>10:34</td>
+                    <td>18. March 2020.</td>
                 </tr>
             </tbody>
           </table>

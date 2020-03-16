@@ -11,6 +11,7 @@ namespace Application.Common.Interfaces
         DbSet<User> Users { get; set; }
         DbSet<TimerInfo> Timers { get; set; }
         DbSet<TaskItem> Tasks { get; set; }
+        DbSet<Activity> Activities { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

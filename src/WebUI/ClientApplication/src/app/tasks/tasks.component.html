@@ -18,7 +18,8 @@
 <div *ngIf="projectIsSelected" class="row">
     <div class="col s12 task-buttons">
         <a (click)="openModal('create-task-modal')" class="btn-green btn waves-effect waves-light"><i class="material-icons right">add</i>Add New Task</a>
-        <a (click)="changeProject()" class="task-buttons__btn btn-red btn waves-effect waves-light"><i class="material-icons right">clear</i>Change Project</a>
+        <a (click)="goToTimer()" style="margin: 0 10px;" class="amber lighten-1 btn waves-effect waves-light"><i class="material-icons right">access_time</i>Go To Timer</a>
+        <a (click)="changeProject()" class="btn-red btn waves-effect waves-light"><i class="material-icons right">clear</i>Change Project</a>
     </div>
 </div>
 
