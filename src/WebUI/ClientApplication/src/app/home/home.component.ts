@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services';
+import { Router } from '@angular/router';
+
+declare var $:any;
 
 @Component({
   selector: 'app-home',
@@ -9,11 +12,22 @@ import { AuthenticationService } from '../_services';
 export class HomeComponent implements OnInit {
   username = 'Guest';
   constructor(
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.initializeDropdown();
     this.username = this.authService.currentUserValue.username;
   }
 
+  initializeDropdown() {
+    $(document).ready(function(){
+      $('.dropdown-trigger').dropdown();
+    });
+  }
+
+  logoutUser() {
+    this.authService.logout();
+  }
 }

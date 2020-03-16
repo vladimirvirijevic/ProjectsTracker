@@ -30,9 +30,14 @@
     <main class="main-content">
         <div class="top-info">
             <div class="top-info-user">
-                <img class="top-info-user__image" src="../../assets/img/profile.png" alt="profile picture">   
-                <p class="top-info-user__username">{{ username }}</p>
+                <img data-target='dropdown1' class="dropdown-trigger top-info-user__image" src="../../assets/img/profile.png" alt="profile picture">   
+                <p data-target='dropdown1' class="dropdown-trigger top-info-user__username">{{ username }}</p>
             </div>
+             <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content user-dropdown'>
+                <li><a>Settings</a></li>
+                <li><a (click)="logoutUser()">Logout</a></li>
+            </ul>
         </div>
         <div class="section">
             <router-outlet></router-outlet>
