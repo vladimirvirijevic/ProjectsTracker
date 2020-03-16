@@ -1,4 +1,5 @@
 ﻿using Application.Timers.Commands;
+using Application.Timers.Commands.StopTimer;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,17 @@ namespace WebUI.Controllers
         {
             var currentUsername = _userService.GetCurrentUser(this.User).Username;
 
+            command.Username = currentUsername;
+
+            var result = await _mediator.Send(command);
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Stop([FromBody] StopTimerCommand command)
+        {
+            var currentUsername = _userService.GetCurrentUser(this.User).Username;
             command.Username = currentUsername;
 
             var result = await _mediator.Send(command);

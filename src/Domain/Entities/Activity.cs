@@ -8,6 +8,7 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
         public string TimeWorked { get; set; }
+        public string ProjectName{ get; set; }
         public int ProjectId { get; set; }
         public string Username { get; set; }
         public string StartTime { get; set; }

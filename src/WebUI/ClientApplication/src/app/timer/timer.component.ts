@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TimerService, ProjectService, AuthenticationService } from '../_services';
 import { Project } from '../_models';
+import { Activity } from '../_models/activity';
 
 @Component({
   selector: 'app-timer',
@@ -58,11 +59,28 @@ export class TimerComponent implements OnInit {
     this.displayTime();
   }
 
+  
+
   stopTimer() {
+    let d = new Date();
+
     this.timerIsRunning = false;
     this.time = 0;
-    this.timerService.stopTimer();
-    clearInterval(this.timer);
+
+    const activity = new Activity();
+    activity.projectId = -1
+    activity.projectName = this.selectedProjectName;
+
+
+
+    activity.startTime = this.getTimeAsString(this.timerService.getStartingTime());
+    activity.endTime = this.getTimeAsString(Date.now());
+    activity.timeWorked = this.getTimeWorked((Date.now() - this.timerService.getStartingTime()));
+    activity.date = this.getDateAsString(Date.now());
+
+    this.timerService.stopTimer(activity).subscribe(
+      () => clearInterval(this.timer)
+    );
   }
 
   getProjects() {
@@ -82,6 +100,21 @@ export class TimerComponent implements OnInit {
           }
         }
       );
+  }
+
+  getTimeAsString(time) {
+      let date = new Date(time);
+      return date.getHours() + ":" + date.getMinutes();
+  }
+
+  getTimeWorked(time) {
+    let date = new Date(time);
+    return date.getMinutes().toString();
+  }
+
+  getDateAsString(time) {
+      let date = new Date(time);
+      return date.getDate() + "." + date.getMonth() + "." + date.getFullYear();
   }
 
   ngOnDestroy() {

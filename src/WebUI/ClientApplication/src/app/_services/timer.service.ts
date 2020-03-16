@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Activity } from '../_models/activity';
+import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimerService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   startTimer(time) {
     localStorage.setItem('startingTime', time);
@@ -36,8 +42,18 @@ export class TimerService {
     return -100;
   }
 
-  stopTimer() {
-    localStorage.removeItem('startingTime');
-    localStorage.setItem('timerIsRunning', 'FALSE');
+  stopTimer(activity: Activity) {
+    return this.http.post(`${environment.api_url}/timer/stop`, activity)
+      .pipe(
+        tap((data) => {
+          console.log(data);
+          localStorage.removeItem('startingTime');
+          localStorage.setItem('timerIsRunning', 'FALSE');
+          console.log(localStorage.getItem('timerIsRunning'));
+          console.log(localStorage.getItem('startingTime'));
+        })
+      );
   }
+
+  
 }
