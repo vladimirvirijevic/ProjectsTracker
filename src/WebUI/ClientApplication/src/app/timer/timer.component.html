@@ -23,41 +23,45 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col s12 activity-heading">
-        <h4>Latest Activity</h4>
+<div class="activities" *ngIf="activities.length">
+    <div class="row">
+        <div class="col s12 activity-heading">
+            <h4>Latest Activity</h4>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col s12">
+            <table class="activity-table">
+                <thead>
+                  <tr>
+                      <th>Project Name</th>
+                      <th>Minutes Worked</th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                      <th>Date</th>
+                      <th></th>
+                  </tr>
+                </thead>
+            
+                <tbody>
+                    <tr class="activity-table__item" *ngFor="let activity of activities">
+                        <td>{{ activity.projectName }}</td>
+                        <td>{{ activity.timeWorked }}</td>
+                        <td>{{ activity.startTime }}</td>
+                        <td>{{ activity.endTime }}</td>
+                        <td>{{ activity.date }}</td>
+                        <td><i (click)="deleteActivity(activity.id)" class="material-icons red-text" style="cursor: pointer;">clear</i></td>
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>    
+</div>
+
+<div style="margin-top: 50px; font-size: 30px !important;" class="row" *ngIf="!activities.length">
+    <div class="col s12">
+        <h4 sty>There are no recent activities</h4>
     </div>
 </div>
 
-<div class="row">
-    <div class="col s12">
-        <table class="activity-table">
-            <thead>
-              <tr>
-                  <th>Project Name</th>
-                  <th>Minutes Worked</th>
-                  <th>Start Time</th>
-                  <th>End Time</th>
-                  <th>Date</th>
-              </tr>
-            </thead>
-        
-            <tbody>
-                <tr class="activity-table__item">
-                    <td>Neki Projekat</td>
-                    <td>55</td>
-                    <td>14:24</td>
-                    <td>15:19</td>
-                    <td>17. March 2020.</td>
-                </tr>
-                <tr class="activity-table__item">
-                    <td>Projekat 2</td>
-                    <td>30</td>
-                    <td>10:04</td>
-                    <td>10:34</td>
-                    <td>18. March 2020.</td>
-                </tr>
-            </tbody>
-          </table>
-    </div>
-</div>

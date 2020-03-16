@@ -1,5 +1,6 @@
 ﻿using Application.Timers.Commands;
 using Application.Timers.Commands.StopTimer;
+using Application.Timers.Queries.GetAllActivities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +45,16 @@ namespace WebUI.Controllers
             command.Username = currentUsername;
 
             var result = await _mediator.Send(command);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetActivities()
+        {
+            var currentUsername = _userService.GetCurrentUser(this.User).Username;
+
+            var result = await _mediator.Send(new GetAllActivitiesQuery() { Username = currentUsername });
 
             return Ok(result);
         }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Activity } from '../_models/activity';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +56,7 @@ export class TimerService {
       );
   }
 
-  
+  getActivites(): Observable<Activity[]> {
+    return this.http.get<Activity[]>(`${environment.api_url}/timer/getactivities`);
+  }
 }

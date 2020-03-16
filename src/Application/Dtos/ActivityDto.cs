@@ -14,8 +14,10 @@ namespace Application.Dtos
             TimeWorked = activity.TimeWorked;
             Date = activity.Date;
             ProjectName = activity.ProjectName;
+            Id = activity.Id;
         }
 
+        public int Id { get; set; }
         public string StartTime { get; set; }
         public string ProjectName { get; set; }
         public string EndTime { get; set; }

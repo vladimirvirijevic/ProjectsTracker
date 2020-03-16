@@ -16,6 +16,7 @@ export class TimerComponent implements OnInit {
   projects: Project[];
   timerIsRunning = false;
   currentProject: Project;
+  activities: Activity[] = [];
 
   constructor(
     private timerService: TimerService,
@@ -32,6 +33,7 @@ export class TimerComponent implements OnInit {
     this.timerIsRunning = this.timerService.isTimerRunning();
 
     this.getProjects();
+    this.getActivities();
   }
 
   onChange(projectName) {
@@ -79,7 +81,10 @@ export class TimerComponent implements OnInit {
     activity.date = this.getDateAsString(Date.now());
 
     this.timerService.stopTimer(activity).subscribe(
-      () => clearInterval(this.timer)
+      () => {
+        clearInterval(this.timer)
+        this.getActivities();
+      }
     );
   }
 
@@ -88,7 +93,6 @@ export class TimerComponent implements OnInit {
       .subscribe(
         data => {
           this.projects = data;
-          console.log(this.projects);
           // set default selected project name to first project
           if (this.projects) {
             if (this.timerService.getTimedProject) {
@@ -100,6 +104,18 @@ export class TimerComponent implements OnInit {
           }
         }
       );
+  }
+
+  getActivities() {
+    this.timerService.getActivites()
+      .subscribe(
+        data => {
+          this.activities = data;
+        }
+      )
+  }
+
+  deleteActivity(id) {
   }
 
   getTimeAsString(time) {
