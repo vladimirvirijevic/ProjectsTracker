@@ -76,7 +76,7 @@
             required
             type="text" 
             class="validate"
-            [ngClass]="{ 'is-invalid': submitted && description.errors }" type="text"
+            [ngClass]="{ 'is-invalid': submitted && description.errors }"
             >
           <label for="name">Task Name</label>
           <div *ngIf="taskName.invalid && (taskName.dirty || taskName.touched)" class="invalid">

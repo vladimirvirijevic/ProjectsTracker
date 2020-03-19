@@ -1,0 +1,40 @@
+<div class="row section__title">
+    <div class="col s12">
+        <h1>Settings</h1>
+    </div>
+</div>
+
+<div class="row settings-section">
+    <div class="col s12">
+        <form [formGroup]="changeUsernameForm" (ngSubmit)="onChangeUsername()">
+            <div class="row">
+                <div class="col s12">
+                    <p>Current username: <b>{{ username }}</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                  <input 
+                    id="newUsername" 
+                    type="text" 
+                    class="validate"
+                    required
+                    formControlName="newUsername"
+                    [ngClass]="{ 'is-invalid': submitted && newUsername.errors }"
+                    >
+                  <label for="newUsername">New Username</label>
+                  <div *ngIf="newUsername.invalid && (newUsername.dirty || newUsername.touched)" class="invalid">
+                    <div *ngIf="newUsername.errors.required">
+                        New Username is required.
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <button class="waves-effect waves-light btn blue" type="submit"><i class="material-icons right">person</i>CHANGE USERNAME</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

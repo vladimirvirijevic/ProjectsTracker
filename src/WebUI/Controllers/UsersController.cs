@@ -1,5 +1,7 @@
-﻿using AutoMapper;
+﻿using Application.Users.Commands.ChangeUsername;
+using AutoMapper;
 using Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -13,11 +15,13 @@ namespace WebUI.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
+        private readonly IMediator _mediator;
         private IUserService _userService;
         private IMapper _mapper;
 
-        public UsersController(IUserService userService, IMapper mapper)
+        public UsersController(IUserService userService, IMapper mapper, IMediator mediator)
         {
+            _mediator = mediator;
             _userService = userService;
             _mapper = mapper;
         }
@@ -58,6 +62,17 @@ namespace WebUI.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
+        }
+
+        [HttpPut("changeusername")]
+        public async Task<IActionResult> ChangeUsername([FromBody] ChangeUsernameCommand command)
+        {
+            var username = _userService.GetCurrentUser(this.User).Username;
+            command.Username = username;
+
+            await _mediator.Send(command);
+
+            return Ok();
         }
     }
 }

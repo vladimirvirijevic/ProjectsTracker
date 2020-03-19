@@ -8,6 +8,7 @@ import { AuthGuard } from './_helpers';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/register', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: AuthComponent },
   { path: 'app', canActivate: [AuthGuard], component: HomeComponent, children: [
     { path: 'tasks', component: TasksComponent},
+    { path: 'settings', component: SettingsComponent },
     { path: 'projects', component: ProjectsComponent, children: [
       { path: '', component: ProjectsListComponent },
       { path: ':id', component: ProjectDetailComponent }

@@ -57,6 +57,7 @@ export class TasksComponent implements OnInit {
     }
 
     const selectedTask = event.container.data[event.currentIndex];
+    //console.log(selectedTask);
     this.changeTaskStatus(board, selectedTask.id);
   }
 

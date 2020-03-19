@@ -17,6 +17,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { ModalModule } from './_modal';
 import { FormsModule } from '@angular/forms';
 import { DragDropModule  } from '@angular/cdk/drag-drop';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DragDropModule  } from '@angular/cdk/drag-drop';
     TimerComponent,
     ProjectsListComponent,
     ProjectDetailComponent,
-    TasksComponent
+    TasksComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
