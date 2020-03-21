@@ -15,5 +15,7 @@ namespace WebUI.Services
         Task<User> CreateAsync(User user, string password);
         string GenerateToken(User user);
         User GetCurrentUser(ClaimsPrincipal principal);
+
+        Task<bool> ChangePassword(User userInfo, string oldPassword, string newPassword);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -77,7 +78,7 @@ namespace WebUI.Services
 
         // private helper methods
 
-        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             if (password == null) throw new ArgumentNullException("password");
             if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
@@ -89,7 +90,7 @@ namespace WebUI.Services
             }
         }
 
-        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+        public static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
         {
             if (password == null) throw new ArgumentNullException("password");
             if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
@@ -134,6 +135,25 @@ namespace WebUI.Services
             User currentUser = GetById(int.Parse(userId));
 
             return currentUser;
+        }
+
+        public async Task<bool> ChangePassword(User userInfo, string oldPassword, string newPassword)
+        {
+            // check if password is correct
+            if (!VerifyPasswordHash(oldPassword, userInfo.PasswordHash, userInfo.PasswordSalt))
+                return false;
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == userInfo.Username);
+
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(newPassword, out passwordHash, out passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            await _context.SaveChangesAsync(new System.Threading.CancellationToken());
+
+            return true;
         }
     }
 }

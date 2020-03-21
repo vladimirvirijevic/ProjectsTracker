@@ -6,33 +6,51 @@
 
 <div class="row settings-section">
     <div class="col s12">
-        <form [formGroup]="changeUsernameForm" (ngSubmit)="onChangeUsername()">
+        <form [formGroup]="changePasswordForm" (ngSubmit)="onChangePassword()">
             <div class="row">
                 <div class="col s12">
-                    <p>Current username: <b>{{ username }}</b></p>
+                    <p>Change Password</p>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                   <input 
-                    id="newUsername" 
-                    type="text" 
+                    id="oldPassword" 
+                    type="password" 
                     class="validate"
                     required
-                    formControlName="newUsername"
-                    [ngClass]="{ 'is-invalid': submitted && newUsername.errors }"
+                    formControlName="oldPassword"
+                    [ngClass]="{ 'is-invalid': submitted && oldPassword.errors }"
                     >
-                  <label for="newUsername">New Username</label>
-                  <div *ngIf="newUsername.invalid && (newUsername.dirty || newUsername.touched)" class="invalid">
-                    <div *ngIf="newUsername.errors.required">
-                        New Username is required.
+                  <label for="oldPassword">Old Password</label>
+                  <div *ngIf="oldPassword.invalid && (oldPassword.dirty || oldPassword.touched)" class="invalid">
+                    <div *ngIf="oldPassword.errors.required">
+                        Old Password is required.
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                  <input 
+                    id="newPassword" 
+                    type="password" 
+                    class="validate"
+                    required
+                    formControlName="newPassword"
+                    [ngClass]="{ 'is-invalid': submitted && newPassword.errors }"
+                    >
+                  <label for="newPassword">New Password</label>
+                  <div *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched)" class="invalid">
+                    <div *ngIf="newPassword.errors.required">
+                        New Password is required.
                     </div>
                   </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col s12">
-                    <button class="waves-effect waves-light btn blue" type="submit"><i class="material-icons right">person</i>CHANGE USERNAME</button>
+                    <button class="waves-effect waves-light btn blue" type="submit"><i class="material-icons right">vpn_key</i>CHANGE PASSWORD</button>
                 </div>
             </div>
         </form>

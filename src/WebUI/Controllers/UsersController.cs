@@ -1,4 +1,6 @@
-﻿using Application.Users.Commands.ChangeUsername;
+﻿using Application.Common.Interfaces;
+using Application.Users.Commands.ChangePassword;
+using Application.Users.Commands.ChangeUsername;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -71,6 +73,21 @@ namespace WebUI.Controllers
             command.Username = username;
 
             await _mediator.Send(command);
+
+            return Ok();
+        }
+
+        [HttpPut("changepassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommand command)
+        {
+            User user = _userService.GetCurrentUser(this.User);
+
+            var result = await _userService.ChangePassword(user, command.OldPassword, command.NewPassword);
+
+            if (!result) 
+            {
+                return BadRequest();
+            }
 
             return Ok();
         }

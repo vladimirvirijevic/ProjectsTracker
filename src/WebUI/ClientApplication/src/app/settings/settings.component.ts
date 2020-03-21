@@ -8,8 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styles: []
 })
 export class SettingsComponent implements OnInit {
-  changeUsernameForm: FormGroup;
-  username = '';
+  changePasswordForm: FormGroup;
 
   constructor(
     private authService: AuthenticationService,
@@ -18,31 +17,27 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.setUsername();
-
-    this.changeUsernameForm = this.fb.group({
-      'newUsername': ['', Validators.required]
+    this.changePasswordForm = this.fb.group({
+      'newPassword': ['', Validators.required],
+      'oldPassword': ['', Validators.required]
     });
   }
 
-  get newUsername() { return this.changeUsernameForm.get('newUsername'); }
+  get newPassword() { return this.changePasswordForm.get('newPassword'); }
+  get oldPassword() { return this.changePasswordForm.get('oldPassword'); }
 
-  onChangeUsername() {
-    if (!this.newUsername) {
+  onChangePassword() {
+    if (!this.newPassword) {
       return null;
     }
 
-    // moramo praviti objekat jer ne mozemo posalti sam string, dobicemo 415 error
     const userInfo = {
-      newUsername: this.newUsername.value
+      newPassword: this.newPassword.value,
+      oldPassword: this.oldPassword.value
     } 
 
-    this.userService.changeUsername(userInfo).subscribe(
-      () => this.setUsername()
+    this.userService.changePassword(userInfo).subscribe(
+      () => this.authService.logout()
     );
-  }
-
-  setUsername() {
-    this.username = this.authService.currentUserValue.username;
   }
 }

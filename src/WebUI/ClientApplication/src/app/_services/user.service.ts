@@ -15,4 +15,8 @@ export class UserService {
     changeUsername(userInfo) {
         return this.http.put<any>(`${environment.api_url}/users/changeusername`, userInfo);
     }
+
+    changePassword(userInfo) {
+        return this.http.put<any>(`${environment.api_url}/users/changepassword`, userInfo);
+    }
 }
