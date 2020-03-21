@@ -18,7 +18,7 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.username = this.authService.currentUserValue.username;
+    this.setUsername();
 
     this.changeUsernameForm = this.fb.group({
       'newUsername': ['', Validators.required]
@@ -37,6 +37,12 @@ export class SettingsComponent implements OnInit {
       newUsername: this.newUsername.value
     } 
 
-    this.userService.changeUsername(userInfo).subscribe();
+    this.userService.changeUsername(userInfo).subscribe(
+      () => this.setUsername()
+    );
+  }
+
+  setUsername() {
+    this.username = this.authService.currentUserValue.username;
   }
 }
